@@ -2,7 +2,7 @@
 
 // ALEX VELA MERRIEN
 
-// SAMUEL P…REZ SANDONATO
+// SAMUEL P√âREZ SANDONATO
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ public class BattleshipAlexSamuel {
 
 		public static void main (String [] Args) {
 			
-			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
+			// TREMENDO JUEGAZO DE ALEX Y SAMUEL, EPICARDO:
 			
 			
 			
@@ -33,7 +33,7 @@ public class BattleshipAlexSamuel {
 		public static void updateMap () {
 			
 			// ESTA PARTE SE ENCARGA DE ACTUALIZAR EL MAPA DE JUEGO
-			// BASICAMENTE HAR¡ LOS PRINT DEL ARRAY
+			// BASICAMENTE HAR√Å LOS PRINT DEL ARRAY
 			// AGUA: 0 TOCADO: # HUNDIDO: X
 			
 			
@@ -45,7 +45,7 @@ public class BattleshipAlexSamuel {
 			// ESTA PARTE SE ENCARGA DE PEDIR LAS COORDENADAS Y ACTUALIZAR EL ARRAY CON LOS
 			// CALCULOS CORRESPONDIENTES Y CONTADORES (DISPAROS, BARCOS HUNDIDOS...)
 			// SYNTAXIS PARA INTRODUCIR COORDENADAS: (posx, poxy) 
-			// SI LAS COORDENADAS NO SON V¡LIDAS VOLVER A PREGUNTAR
+			// SI LAS COORDENADAS NO SON V√ÅLIDAS VOLVER A PREGUNTAR
 			// SI SON VALIDAS ACTUALIZAR ARRAY Y LLAMAR A UpdateMap()
 			
 			
