@@ -12,7 +12,7 @@ public class BattleshipAlexSamuel {
 			
 			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
 			
-			
+			// QUE NO QUITES EL EPICARDO BOBO
 			
 		}
 		
