@@ -13,7 +13,7 @@ public class BattleshipAlexSamuel {
 			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
 			
 			// QUE NO QUITES EL EPICARDO BOBO
-			
+			updateMap();
 		}
 		
 		public static void start () {
@@ -36,9 +36,45 @@ public class BattleshipAlexSamuel {
 			// BASICAMENTE HARÃ LOS PRINT DEL ARRAY
 			// AGUA: 0 TOCADO: # HUNDIDO: X
 			
+			String [] [] infoMapa = new String [] []  {{"#","A"," ","X"," "},{"#"," "," ","A"," "},{" ","X","#"," ","#"},{"#"," ","A"," ","#"},{" ","X"," ","X","#"}};
+			String inf = "\t|_____|_____|_____|_____|_____|";
+			String sup = "\t|     |     |     |     |     |";
+			String top = "\t_______________________________";
+			
+						// 			EJEMPLO TABLERO
+						// 	_______________________________
+						//	|     |     |     |     |     |
+						//	|  #  |  A  |     |  X  |     |
+						//	|_____|_____|_____|_____|_____|
+						//	|     |     |     |     |     |
+						//	|  #  |     |     |  A  |     |
+						//	|_____|_____|_____|_____|_____|
+						//	|     |     |     |     |     |
+						//	|     |  X  |  #  |     |  #  |
+						//	|_____|_____|_____|_____|_____|
+						//	|     |     |     |     |     |
+						//	|  #  |     |  A  |     |  #  |
+						//	|_____|_____|_____|_____|_____|
+						//	|     |     |     |     |     |
+						//	|     |  X  |     |  X  |  #  |
+						//	|_____|_____|_____|_____|_____|
 			
 			
+			System.out.println(top);
 			
+			for (int i = 0; i<infoMapa.length; i++) {
+				
+				System.out.print(sup);
+				System.out.print("\n\t");
+				for (int j=0; j<infoMapa[i].length; j++) {
+								
+					
+					System.out.print("|  " + infoMapa[i][j] + "  ");
+					
+				}
+				System.out.println("|");
+				System.out.println(inf);
+			}
 		}
 		public static void shootAt (int x, int y) {
 			
