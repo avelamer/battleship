@@ -65,7 +65,9 @@ public class BattleshipAlexSamuel {
 	 
 	
 			   
-			  
+	 System.out.println("\n"
+				+ "\n \n \n \t \t \t \tPlease select a gamemode: \n \t \t \t \ta) Basic mode\n \t \t \t \tb) Advanced mode");	  
+			  	  
 			  
 			  
 			
