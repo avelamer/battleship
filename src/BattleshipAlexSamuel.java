@@ -248,13 +248,24 @@ public class BattleshipAlexSamuel {
 							+ "\tSelect the quadrant you want to shoot at: "+
 							"\n\t");
 			String coordinates = input.nextLine();
+			
+			while(Character.getNumericValue(coordinates.charAt(0)) < 0 || Character.getNumericValue(coordinates.charAt(0)) > 5 || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) < 0 || Character.getNumericValue(coordinates.charAt(2)) > 5 ) {
+				
+			if(Character.getNumericValue(coordinates.charAt(0)) < 0 || Character.getNumericValue(coordinates.charAt(0)) > 5 || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) < 0 || Character.getNumericValue(coordinates.charAt(2)) > 5 ) {
+				
+				System.out.print("\n\tThe coordinates could not be found, please try again");
+				System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
+						+ "\tSelect the quadrant you want to shoot at: "+
+						"\n\t");
+				 coordinates = input.nextLine();
+				}
+			}
+
 			X = Character.getNumericValue(coordinates.charAt(0));
 			Y = Character.getNumericValue(coordinates.charAt(2));
 			
 			
-			
 			shootAt(X,Y);
-			
 		}
 		public static void shootAt (int x, int y) {
 			
