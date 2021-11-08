@@ -9,19 +9,28 @@ import java.util.Scanner;
 public class BattleshipAlexSamuel {
 
 	
+
 	static int[][] infoShips = new int [5][5];
+	static String [] [] infoMapa = new String [] []  {{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "}};
+	static Scanner input = new Scanner(System.in);
 	
+	static int shipH3X , shipH3Y; // VARIABLES FOR SHIP LENGTH 3 HORIZONTAL   1
+	static int shipV3X , shipV3Y; // VARIABLES FOR SHIP LENGTH 3 VERTICAL     2
+	static int shipH2X , shipH2Y; // VARIABLES FOR SHIP LENGTH 2 HORIZONTAL   3
+	static int shipV2X , shipV2Y; // VARIABLES FOR SHIP LENGTH 2 VERTICAL     4
+	
+	static int remainingQuadrants1 = 3;
 	
 	
 		public static void main (String [] Args) {
 			
 			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
 			
-			start();
+			//start();
 			
-			//shipGeneration();
+			shipGeneration();
 			
-			//updateMap();
+			updateMap();
 		}
 		
 		public static void start () {
@@ -78,10 +87,6 @@ public class BattleshipAlexSamuel {
 			// THERE ARE 2 SHIPS OF LENGTH 2 AND 3, VERTICAL AND HORIZONTAL
 			
 			boolean valid = false;
-			int shipH3X , shipH3Y; // VARIABLES FOR SHIP LENGTH 3 HORIZONTAL
-			int shipV3X , shipV3Y; // VARIABLES FOR SHIP LENGTH 3 VERTICAL
-			int shipH2X , shipH2Y; // VARIABLES FOR SHIP LENGTH 2 HORIZONTAL
-			int shipV2X , shipV2Y; // VARIABLES FOR SHIP LENGTH 2 VERTICAL
 			
 			// AT FIRST, THE ARRAY infoShips IS ASSIGNED COMPLETELY WITH VALUE 0
 			for (int i = 0; i< infoShips.length; i++) {
@@ -194,7 +199,6 @@ public class BattleshipAlexSamuel {
 			// BASICAMENTE HARA LOS PRINT DEL ARRAY
 			// AGUA: 0 TOCADO: # HUNDIDO: X
 			
-			String [] [] infoMapa = new String [] []  {{"#","A"," ","X"," "},{"#"," "," ","A"," "},{" ","X","#"," ","#"},{"#"," ","A"," ","#"},{" ","X"," ","X","#"}};
 			String inf = "\t|_____|_____|_____|_____|_____|";
 			String sup = "\t|     |     |     |     |     |";
 			String top = "\t_______________________________";
@@ -226,15 +230,31 @@ public class BattleshipAlexSamuel {
 				System.out.print("\n\t");
 				for (int j=0; j<infoMapa[i].length; j++) {
 								
-					// He modificado provisionalmente el print para hacer pruebas con la generacion de barcos
-					System.out.print("|  " + infoShips[i][j] + "  ");
-					//							^
-					//							|
+					System.out.print("|  " + infoMapa[i][j] + "  ");
 					
 				}
 				System.out.println("|");
 				System.out.println(inf);
 			}
+			newCoordinates();
+		}
+		public static void newCoordinates() {
+			
+			int X,Y;
+			// BRO, ENCARGATE DE ESTO, SOBRETODO DE COMPROBAR QUE TODO ES VALIDO
+			// 
+						
+			System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
+							+ "\tSelect the quadrant you want to shoot at: "+
+							"\n\t");
+			String coordinates = input.nextLine();
+			X = Character.getNumericValue(coordinates.charAt(0));
+			Y = Character.getNumericValue(coordinates.charAt(2));
+			
+			
+			
+			shootAt(X,Y);
+			
 		}
 		public static void shootAt (int x, int y) {
 			
@@ -244,7 +264,37 @@ public class BattleshipAlexSamuel {
 			// SI LAS COORDENADAS NO SON VÃLIDAS VOLVER A PREGUNTAR
 			// SI SON VALIDAS ACTUALIZAR ARRAY Y LLAMAR A UpdateMap()
 			
+			switch (infoShips[x-1][y-1]) {
 			
+				case 0: 
+				 
+					infoMapa[x-1][y-1] = "0";
+					System.out.println("What a shame, it's water :(");
+					break;
+				case 1:
+				
+					remainingQuadrants1 = remainingQuadrants1 - 1;
+					System.out.println(remainingQuadrants1);
+				
+					if (remainingQuadrants1 >0) {
+					
+						infoMapa[x-1][y-1] = "#";
+						System.out.println("Wow, you hit a ship :)");
+					}
+					else {
+					
+						infoMapa[shipH3X][shipH3Y] = "X";
+						infoMapa[shipH3X][shipH3Y + 1] = "X";
+						infoMapa[shipH3X][shipH3Y + 2] = "X";
+						System.out.println("Amazing!!! You sunk a ship!");
+					
+					}
+					break;
+					default: System.out.println("cd"); break;
+			
+				}
+					
+			updateMap();
 		}
 		public static void end () {
 			
