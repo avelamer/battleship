@@ -11,6 +11,7 @@ public class BattleshipAlexSamuel {
 	
 
 	static int[][] infoShips = new int [5][5];
+	static int[][] shootedQuadrants = new int [5][5];
 	static String [] [] infoMapa = new String [] []  {{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "}};
 	static Scanner input = new Scanner(System.in);
 	
@@ -276,7 +277,13 @@ public class BattleshipAlexSamuel {
 			// SI LAS COORDENADAS NO SON VÃLIDAS VOLVER A PREGUNTAR
 			// SI SON VALIDAS ACTUALIZAR ARRAY Y LLAMAR A UpdateMap()
 			
-			switch (infoShips[y-1][x-1]) {
+			for (int i = 0; i< shootedQuadrants.length; i++) {
+				
+				shootedQuadrants[i][i] = 0;
+			}
+			
+			if (shootedQuadrants[x-1][y-1]) {
+			switch (infoShips[y-1][x-1] == 0) {
 			
 				case 0: 
 				 
@@ -356,6 +363,13 @@ public class BattleshipAlexSamuel {
 					
 				default: System.out.println("\tERROR");
 				}
+			}
+			else {
+				
+				
+				
+				
+			}
 					
 			updateMap();
 		}
