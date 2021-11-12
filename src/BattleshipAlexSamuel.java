@@ -13,6 +13,7 @@ public class BattleshipAlexSamuel {
 	static int[][] infoShips = new int [5][5];
 	static int[][] shootedQuadrants = new int [5][5];
 	static String [] [] infoMapa = new String [] []  {{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "}};
+	static int [] beginingnumbers = new int []  {1,2,3,4,5};
 	static Scanner input = new Scanner(System.in);
 	
 	static int shipH3X , shipH3Y; // VARIABLES FOR SHIP LENGTH 3 HORIZONTAL   1
@@ -44,47 +45,47 @@ public class BattleshipAlexSamuel {
 				
 				shootedQuadrants[i][i] = 0;
 			}
-			// ESTA PARTE SE ENCARGA DE MOSTRAR EN PANTALLA EL INICIO DEL JUEGO
-			// Y  DE PREGUNTAR AL JUGADOR EN QUE MODO DE JUEGO QUIERE JUGAR
+			// ESTA PARTE SE ENCARGA DE MOSTRAR EN PANTALLA EL INICIO DEL JUEGO				
+			// Y  DE PREGUNTAR AL JUGADOR EN QUE MODO DE JUEGO QUIERE JUGAR	   
 			
-	 System.out.print("			        _______       _________    ___________   ___________   	             __________    __________                  ___________      _________ \n"
-					+ "			       |       |     |         |        |             |        |             | 	           |             |         |   	    |          |         |\n"
-					+ "			       |       |     |         |        |             |        |             |	           |             |         |   	    |          |         |\n"
-					+ "			       |       |     |         |        |             |        |             |	           |             |         |	    |          |         |\n"
-					+ "			       |_______|_    |_________|        |             |        |             |_________    |_________    |_________|        |          |_________|\n"
-					+ "			       |         |   |         |        |             |        |             |	                     |   |         |        |          |          \n"
-					+ "			       |         |   |         |        |             |        |             |	                     | 	 |         |        |          |          \n"
-					+ "			       |         |   |         |        |             |        |             |	                     |	 |         |        |          |          \n"
-					+ "			       |_________|   |         |        |             |        |__________   |__________   __________|   |  	   |   _____|_____     |          \n"
-					+ "                                                                                                                                                           \n"
-					+ "                                                                                                                                                           \n"
-					+ "                                                                                                                                                           \n"
-					+ "                                                                                                                                                           \n"
-					+ "                                                                                       $o                                                                  \n"
-					+ "                                                                                       $                                                                   \n"
-					+ "                                                                                      $$$      .oo..                                                       \n"
-					+ "                                              __                                       $       $$$$$$$                                                     \n"
-                  + "                                              \\ \\_____                             .ooooooo.   $$!!!!!                                                     \n"
-					+ "                                           ###[  _____>                          .'.........'. $$!!!!!      o$$oo.                                         \n"
-					+ "                                              /_/                   $          .o'  oooooo   '.$$!!!!!      $$!!!!!                                        \n"
-					+ "                                                                 ..o$ooo...    $                '!!''!.     $$!!!!!                                        \n"
-					+ "                                                                 $    ..  '''oo$$$$$$$$$$$$$.    '    'oo.  $$!!!!!                                        \n"
-					+ "                                                                 !.......      '''..$$ $$ $$$   ..        '.$$!!''!                                        \n"
-					+ "                                                                 !!$$$!!!!!!!!oooo......   '''  $$ $$ :o           'oo.                                    \n"
-					+ "                                __                              !!$$$!!!$$!$$!!!!!!!!!!oo.....     ' ''  o$$o .      ''oo..                                \n"
-                  + "                                \\ \\_____                        !!!$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!ooooo..      'o  oo..    $                                \n"
-					+ "                             ###[  _____>                        '!!$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!oooooo..  ''   ,$                                \n"
-					+ "                                /_/                               '!!$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!oooo..$$                                \n"
-					+ "                                                                  !!$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$'                                 \n"
-					+ "                                                                   '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$!!!!!!!!!!!!!!!!!!,                                \n"
-					+ "                                                               .....$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$.....                           \n"
-					+ "                                        ,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¨`*•~-.¸       \n"
+	 System.out.print("             _______       _________    ___________   ___________   	             __________    __________                  ___________      _________ \n"
+					+ "	  	       |       |     |         |        |             |        |             | 	           |             |         |   	    |          |         |\n"
+					+ "		       |       |     |         |        |             |        |             |	           |             |         |   	    |          |         |\n"
+					+ "		       |       |     |         |        |             |        |             |	           |             |         |	    |          |         |\n"
+					+ "		       |_______|_    |_________|        |             |        |             |_________    |_________    |_________|        |          |_________|\n"
+					+ "		       |         |   |         |        |             |        |             |	                     |   |         |        |          |          \n"
+					+ "		       |         |   |         |        |             |        |             |	                     | 	 |         |        |          |          \n"
+					+ "		       |         |   |         |        |             |        |             |	                     |	 |         |        |          |          \n"
+					+ "		       |_________|   |         |        |             |        |__________   |__________   __________|   |  	   |   _____|_____     |          \n"
+					+ "                                                                                                                                                       \n"
+					+ "                                                                                                                                                       \n"
+					+ "                                                                                                                                                       \n"
+					+ "                                                                                                                                                       \n"
+					+ "                                                                                   $o                                                                  \n"
+					+ "                                                                                   $                                                                   \n"
+					+ "                                                                                  $$$      .oo..                                                       \n"
+					+ "                                          __                                       $       $$$$$$$                                                     \n"
+                  + "                                          \\ \\_____                             .ooooooo.   $$!!!!!                                                     \n"
+					+ "                                       ###[  _____>                          .'.........'. $$!!!!!      o$$oo.                                         \n"
+					+ "                                          /_/                   $          .o'  oooooo   '.$$!!!!!      $$!!!!!                                        \n"
+					+ "                                                             ..o$ooo...    $                '!!''!.     $$!!!!!                                        \n"
+					+ "                                                             $    ..  '''oo$$$$$$$$$$$$$.    '    'oo.  $$!!!!!                                        \n"
+					+ "                                                             !.......      '''..$$ $$ $$$   ..        '.$$!!''!                                        \n"
+					+ "                                                             !!$$$!!!!!!!!oooo......   '''  $$ $$ :o           'oo.                                    \n"
+					+ "                            __                              !!$$$!!!$$!$$!!!!!!!!!!oo.....     ' ''  o$$o .      ''oo..                                \n"
+                  + "                            \\ \\_____                        !!!$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!ooooo..      'o  oo..    $                                \n"
+					+ "                         ###[  _____>                        '!!$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!oooooo..  ''   ,$                                \n"
+					+ "                            /_/                               '!!$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!oooo..$$                                \n"
+					+ "                                                               !!$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$'                                 \n"	
+					+ "                                                               '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$!!!!!!!!!!!!!!!!!!,                                \n"
+					+ "                                                           .....$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$.....                           \n"
+					+ "                                    ,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¨`*•~-.¸       \n"
 				    );
 	 
 	
 			   
 	 System.out.println("\n"
-				+ "\n \n \n \t \t \t \tPlease select a gamemode: \n \t \t \t \ta) Basic mode\n \t \t \t \tb) Advanced mode");	  
+				+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode\n");	  
 			  	  
 			  
 			  
@@ -207,10 +208,10 @@ public class BattleshipAlexSamuel {
 			// ESTA PARTE SE ENCARGA DE ACTUALIZAR EL MAPA DE JUEGO
 			// BASICAMENTE HARA LOS PRINT DEL ARRAY
 			// AGUA: 0 TOCADO: # HUNDIDO: X
-			
 			String inf = "\t|_____|_____|_____|_____|_____|";
 			String sup = "\t|     |     |     |     |     |";
 			String top = "\t_______________________________";
+			String letter = "\t   A     B     C     D     E   ";
 			
 						// 			EJEMPLO TABLERO
 						// 	_______________________________
@@ -230,13 +231,16 @@ public class BattleshipAlexSamuel {
 						//	|     |  X  |     |  X  |  #  |
 						//	|_____|_____|_____|_____|_____|
 			
-			
+			System.out.println(letter);
 			System.out.println(top);
 			
 			for (int i = 0; i<infoMapa.length; i++) {
 				
 				System.out.print(sup);
-				System.out.print("\n\t");
+				
+				  System.out.print("\n      "+beginingnumbers[i]+" ");
+				
+			
 				for (int j=0; j<infoMapa[i].length; j++) {
 								
 					System.out.print("|  " + infoMapa[i][j] + "  ");
@@ -244,12 +248,13 @@ public class BattleshipAlexSamuel {
 				}
 				System.out.println("|");
 				System.out.println(inf);
+				
 			}
 			newCoordinates();
 		}
 		public static void newCoordinates() {
 			
-			int X,Y;
+			int X = 0,Y;
 			String coordinates;
 
 						
@@ -258,18 +263,53 @@ public class BattleshipAlexSamuel {
 							
 			coordinates = input.nextLine();
 			
-			while(Character.getNumericValue(coordinates.charAt(0)) <= 0 || Character.getNumericValue(coordinates.charAt(0)) > 5 || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) <= 0 || Character.getNumericValue(coordinates.charAt(2)) > 5 ) {
-				
-				if(Character.getNumericValue(coordinates.charAt(0)) <= 0 || Character.getNumericValue(coordinates.charAt(0)) > 5 || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) <= 0 || Character.getNumericValue(coordinates.charAt(2)) > 5 ) {
-				
+			while(!coordinates.startsWith("A")  && !coordinates.startsWith("B")  && !coordinates.startsWith("C")  && !coordinates.startsWith("D")  && !coordinates.startsWith("E") && !coordinates.startsWith("a")  && !coordinates.startsWith("b")  && !coordinates.startsWith("c")  && !coordinates.startsWith("d")  && !coordinates.startsWith("e") || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) < 1 || Character.getNumericValue(coordinates.charAt(2)) > 5 || coordinates.length() > 3) {
+				if(coordinates.length() > 3) {
 					System.out.print("\n\tThe coordinates could not be found, please try again");
 					System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
 									+"\tSelect the quadrant you want to shoot at: \n\t");
 					coordinates = input.nextLine();
 				}
+				if(!coordinates.startsWith("A")  && !coordinates.startsWith("B")  && !coordinates.startsWith("C")  && !coordinates.startsWith("D")  && !coordinates.startsWith("E") && !coordinates.startsWith("a")  && !coordinates.startsWith("b")  && !coordinates.startsWith("c")  && !coordinates.startsWith("d")  && !coordinates.startsWith("e") || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) < 1 || Character.getNumericValue(coordinates.charAt(2)) > 5 || coordinates.length() > 3) {
+				
+					System.out.print("\n\tThe coordinates could not be found, please try again");
+					System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
+									+"\tSelect the quadrant you want to shoot at: \n\t");
+					coordinates = input.nextLine();
+					
+				}
 			}
-
-			X = Character.getNumericValue(coordinates.charAt(0));
+				if(coordinates.startsWith("A")){
+					X = 1;
+				}
+				else if(coordinates.startsWith("B")){
+					X = 2;
+				}
+				else if(coordinates.startsWith("C")){
+					X = 3;
+				}
+				else if(coordinates.startsWith("D")){
+					X = 4;
+				}
+				else if(coordinates.startsWith("E")){
+					X = 5;
+				}
+				else if(coordinates.startsWith("a")){
+					X = 1;
+				}
+				else if(coordinates.startsWith("b")){
+					X = 2;
+				}
+				else if(coordinates.startsWith("c")){
+					X = 3;
+				}
+				else if(coordinates.startsWith("d")){
+					X = 4;
+				}
+				else if(coordinates.startsWith("e")){
+					X = 5;
+				}
+			
 			Y = Character.getNumericValue(coordinates.charAt(2));
 			
 			
@@ -293,7 +333,7 @@ public class BattleshipAlexSamuel {
 					case 0: 
 				 
 						infoMapa[y-1][x-1] = "0";
-						System.out.println("\tWhat a shame, it's water :(");
+						System.out.println("\tWhat a shame, it's water :(\n");
 						break;
 					case 1:
 				
@@ -302,14 +342,14 @@ public class BattleshipAlexSamuel {
 						if (remainingQuadrants1 >0) {
 					
 							infoMapa[y-1][x-1] = "#";
-							System.out.println("\tWow, you hit a ship :)");
+							System.out.println("\tWow, you hit a ship :)\n");
 						}
 						else {
 					
 							infoMapa[shipH3Y][shipH3X] = "X";
 							infoMapa[shipH3Y][shipH3X + 1] = "X";
 							infoMapa[shipH3Y][shipH3X + 2] = "X";
-							System.out.println("\tAmazing!!! You sunk a ship!");
+							System.out.println("\tAmazing!!! You sunk a ship!\n");
 					
 						}
 						break;
@@ -320,14 +360,14 @@ public class BattleshipAlexSamuel {
 						if (remainingQuadrants2 >0) {
 					
 							infoMapa[y-1][x-1] = "#";
-							System.out.println("\tWow, you hit a ship :)");
+							System.out.println("\tWow, you hit a ship :)\n");
 						}
 						else {
 					
 							infoMapa[shipV3Y][shipV3X] = "X";
 							infoMapa[shipV3Y + 1][shipV3X] = "X";
 							infoMapa[shipV3Y + 2][shipV3X] = "X";
-							System.out.println("\tAmazing!!! You sunk a ship!");
+							System.out.println("\tAmazing!!! You sunk a ship!\n");
 					
 						}
 						break;
@@ -338,13 +378,13 @@ public class BattleshipAlexSamuel {
 						if (remainingQuadrants3 >0) {
 					
 							infoMapa[y-1][x-1] = "#";
-							System.out.println("\tWow, you hit a ship :)");
+							System.out.println("\tWow, you hit a ship :)\n");
 						}
 						else {
 					
 							infoMapa[shipH2Y][shipH2X] = "X";
 							infoMapa[shipH2Y][shipH2X + 1] = "X";
-							System.out.println("\tAmazing!!! You sunk a ship!");
+							System.out.println("\tAmazing!!! You sunk a ship!\n");
 					
 						}
 						break;
@@ -355,13 +395,13 @@ public class BattleshipAlexSamuel {
 						if (remainingQuadrants4 >0) {
 					
 							infoMapa[y-1][x-1] = "#";
-							System.out.println("\tWow, you hit a ship :)");
+							System.out.println("\tWow, you hit a ship :)\n");
 						}
 						else {
 					
 							infoMapa[shipV2Y][shipV2X] = "X";
 							infoMapa[shipV2Y + 1][shipV2X] = "X";
-							System.out.println("\tAmazing!!! You sunk a ship!");
+							System.out.println("\tAmazing!!! You sunk a ship!\n");
 					
 						}
 						break;
