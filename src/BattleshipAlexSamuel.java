@@ -35,15 +35,15 @@ public class BattleshipAlexSamuel {
 			
 			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
 			
-			//initialize();
+			initialize();
 			
-			//start();
+			start();
 			
-			//shipGeneration();
+			shipGeneration();
 			
-			//updateMap();
+			updateMap();
 			
-			//end();
+			end();
 		}
 		public static void initialize () {
 			
@@ -59,7 +59,7 @@ public class BattleshipAlexSamuel {
 		}
 		public static void start () {
 			
-			
+			String response;
 			
 
 			// ESTA PARTE SE ENCARGA DE MOSTRAR EN PANTALLA EL INICIO DEL JUEGO		
@@ -101,11 +101,15 @@ public class BattleshipAlexSamuel {
 	 
 	
 			   
-	 System.out.println("\n"
-				+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode\n");	  
-			  	  
-			  
-			  
+	 System.out.print("\n"
+				+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode \n\t");	  
+			  	 response = input.next();
+			  if(response.equalsIgnoreCase("a") && response.length() == 1) {
+				
+			  }
+			  else {
+				  System.exit(-1);
+			  }
 			
 		}
 		public static void shipGeneration () {
@@ -281,7 +285,7 @@ public class BattleshipAlexSamuel {
 			System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
 						    +"\tInsert the coordinates: \n\t");
 							
-			coordinates = input.nextLine();
+			coordinates = input.next();
 			
 			while(!coordinates.startsWith("A")  && !coordinates.startsWith("B")  && !coordinates.startsWith("C")  && !coordinates.startsWith("D")  && !coordinates.startsWith("E") && !coordinates.startsWith("a")  && !coordinates.startsWith("b")  && !coordinates.startsWith("c")  && !coordinates.startsWith("d")  && !coordinates.startsWith("e") || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) < 1 || Character.getNumericValue(coordinates.charAt(2)) > 5 || coordinates.length() > 3) {
 
@@ -289,7 +293,7 @@ public class BattleshipAlexSamuel {
 					System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
 									+"\tInsert the coordinates: \n\t");
 					
-					coordinates = input.nextLine();
+					coordinates = input.next();
 			}
 				if(coordinates.startsWith("A") || coordinates.startsWith("a")){
 					X = 1;
@@ -432,7 +436,7 @@ public class BattleshipAlexSamuel {
 			System.out.println("\tThe game is over!");
 			System.out.println("\t"+ playedGames + " Game played");
 			do {
-				System.out.println("\tDo you want to play again? (Y/N)");
+				System.out.print("\tDo you want to play again? (Y/N) \n\t");
 				answer = input.nextLine();
 
 			} while (!(answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("N")));
