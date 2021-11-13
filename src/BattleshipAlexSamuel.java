@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class BattleshipAlexSamuel {
 
 	
-
+	static int[] beginingNumbers = new int []  {1,2,3,4,5}; 
 	static int[][] infoShips = new int [5][5];
 	static int[][] shootedQuadrants = new int [5][5];
-	static String [] [] infoMapa = new String [] []  {{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "},{" "," "," "," "," "}};
-	static int [] beginingnumbers = new int []  {1,2,3,4,5};
+	static String[][] infoMapa = new String [5] [5];
+
 	static Scanner input = new Scanner(System.in);
 	
 	static int shipH3X , shipH3Y; // VARIABLES FOR SHIP LENGTH 3 HORIZONTAL   1
@@ -26,25 +26,42 @@ public class BattleshipAlexSamuel {
 	static int remainingQuadrants3 = 2;
 	static int remainingQuadrants4 = 2;
 	
+	static int sunkShips = 0;
+	static int shootsFired = 0;
+	static int playedGames = 1;
+	
+	
 		public static void main (String [] Args) {
 			
 			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
 			
-			start();
+			//initialize();
 			
-			shipGeneration();
+			//start();
 			
-			updateMap();
+			//shipGeneration();
+			
+			//updateMap();
+			
+			//end();
 		}
-		
+		public static void initialize () {
+			
+			for (int i = 0; i< shootedQuadrants.length; i++) {
+				
+				for (int j = 0; j< shootedQuadrants.length; j++) {
+					
+					shootedQuadrants[i][j] = 0;
+					infoShips[i][j] = 0;
+					infoMapa[i][j] = " ";
+				}
+			}
+		}
 		public static void start () {
 			
 			
 			
-			for (int i = 0; i< shootedQuadrants.length; i++) {
-				
-				shootedQuadrants[i][i] = 0;
-			}
+
 			// ESTA PARTE SE ENCARGA DE MOSTRAR EN PANTALLA EL INICIO DEL JUEGO		
 			// Y  DE PREGUNTAR AL JUGADOR EN QUE MODO DE JUEGO QUIERE JUGAR	   
 			
@@ -97,12 +114,6 @@ public class BattleshipAlexSamuel {
 			// THERE ARE 2 SHIPS OF LENGTH 2 AND 3, VERTICAL AND HORIZONTAL
 			
 			boolean valid = false;
-			
-			// AT FIRST, THE ARRAY infoShips IS ASSIGNED COMPLETELY WITH VALUE 0
-			for (int i = 0; i< infoShips.length; i++) {
-				
-				infoShips[i][i] = 0;
-			}
 			
 			// THE IDEA FOR THE RANDOM SHIP GENERATION IS THAT FOR EVERY SHIP WE GENERATE 2 RANDOM NUMBERS WHICH ARE LIMITED
 			// SO THAT THE SHIP DOES NOT GENERATE OUT OF THE MAP LIMITS. THE SHIPS OF LENGTH 3 ARE LIMITED IN AN AREA OF 3 X 5,
@@ -211,7 +222,7 @@ public class BattleshipAlexSamuel {
 			String inf = "\t|_____|_____|_____|_____|_____|";
 			String sup = "\t|     |     |     |     |     |";
 			String top = "\t_______________________________";
-			String letter = "\t   A     B     C     D     E   ";
+			String topLetters = "\t   A     B     C     D     E   ";
 			
 						// 			EJEMPLO TABLERO
 						// 	_______________________________
@@ -231,14 +242,13 @@ public class BattleshipAlexSamuel {
 						//	|     |  X  |     |  X  |  #  |
 						//	|_____|_____|_____|_____|_____|
 			
-			System.out.println(letter);
+			System.out.println(topLetters);
 			System.out.println(top);
 			
 			for (int i = 0; i<infoMapa.length; i++) {
 				
-				System.out.print(sup);
-				
-				  System.out.print("\n      "+beginingnumbers[i]+" ");
+				System.out.println(sup);
+				System.out.print("      "+beginingNumbers[i]+" ");
 				
 			
 				for (int j=0; j<infoMapa[i].length; j++) {
@@ -250,7 +260,17 @@ public class BattleshipAlexSamuel {
 				System.out.println(inf);
 				
 			}
-			newCoordinates();
+			System.out.println("\n\tShots fired: " + shootsFired);
+			System.out.println("\tShips sunk: " + sunkShips);
+			
+			if (sunkShips <= 3) {
+				
+				newCoordinates();
+			}
+			else {
+				
+				end();
+			}
 		}
 		public static void newCoordinates() {
 			
@@ -259,54 +279,31 @@ public class BattleshipAlexSamuel {
 
 						
 			System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
-						    +"\tSelect the quadrant you want to shoot at: \n\t");
+						    +"\tInsert the coordinates: \n\t");
 							
 			coordinates = input.nextLine();
 			
 			while(!coordinates.startsWith("A")  && !coordinates.startsWith("B")  && !coordinates.startsWith("C")  && !coordinates.startsWith("D")  && !coordinates.startsWith("E") && !coordinates.startsWith("a")  && !coordinates.startsWith("b")  && !coordinates.startsWith("c")  && !coordinates.startsWith("d")  && !coordinates.startsWith("e") || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) < 1 || Character.getNumericValue(coordinates.charAt(2)) > 5 || coordinates.length() > 3) {
-				if(coordinates.length() > 3) {
+
 					System.out.print("\n\tThe coordinates could not be found, please try again");
 					System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
-									+"\tSelect the quadrant you want to shoot at: \n\t");
-					coordinates = input.nextLine();
-				}
-				if(!coordinates.startsWith("A")  && !coordinates.startsWith("B")  && !coordinates.startsWith("C")  && !coordinates.startsWith("D")  && !coordinates.startsWith("E") && !coordinates.startsWith("a")  && !coordinates.startsWith("b")  && !coordinates.startsWith("c")  && !coordinates.startsWith("d")  && !coordinates.startsWith("e") || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) < 1 || Character.getNumericValue(coordinates.charAt(2)) > 5 || coordinates.length() > 3) {
-				
-					System.out.print("\n\tThe coordinates could not be found, please try again");
-					System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
-									+"\tSelect the quadrant you want to shoot at: \n\t");
-					coordinates = input.nextLine();
+									+"\tInsert the coordinates: \n\t");
 					
-				}
+					coordinates = input.nextLine();
 			}
-				if(coordinates.startsWith("A")){
+				if(coordinates.startsWith("A") || coordinates.startsWith("a")){
 					X = 1;
 				}
-				else if(coordinates.startsWith("B")){
+				else if(coordinates.startsWith("B") || coordinates.startsWith("b")){
 					X = 2;
 				}
-				else if(coordinates.startsWith("C")){
+				else if(coordinates.startsWith("C") || coordinates.startsWith("c")){
 					X = 3;
 				}
-				else if(coordinates.startsWith("D")){
+				else if(coordinates.startsWith("D") || coordinates.startsWith("d")){
 					X = 4;
 				}
-				else if(coordinates.startsWith("E")){
-					X = 5;
-				}
-				else if(coordinates.startsWith("a")){
-					X = 1;
-				}
-				else if(coordinates.startsWith("b")){
-					X = 2;
-				}
-				else if(coordinates.startsWith("c")){
-					X = 3;
-				}
-				else if(coordinates.startsWith("d")){
-					X = 4;
-				}
-				else if(coordinates.startsWith("e")){
+				else if(coordinates.startsWith("E") || coordinates.startsWith("e")){
 					X = 5;
 				}
 			
@@ -328,6 +325,8 @@ public class BattleshipAlexSamuel {
 			if (shootedQuadrants[x-1][y-1] == 0) {
 				
 				shootedQuadrants[x-1][y-1] = 1;
+				shootsFired += 1;
+				
 				switch (infoShips[y-1][x-1]) {
 			
 					case 0: 
@@ -350,6 +349,7 @@ public class BattleshipAlexSamuel {
 							infoMapa[shipH3Y][shipH3X + 1] = "X";
 							infoMapa[shipH3Y][shipH3X + 2] = "X";
 							System.out.println("\tAmazing!!! You sunk a ship!\n");
+							sunkShips += 1;
 					
 						}
 						break;
@@ -368,6 +368,7 @@ public class BattleshipAlexSamuel {
 							infoMapa[shipV3Y + 1][shipV3X] = "X";
 							infoMapa[shipV3Y + 2][shipV3X] = "X";
 							System.out.println("\tAmazing!!! You sunk a ship!\n");
+							sunkShips += 1;
 					
 						}
 						break;
@@ -385,6 +386,7 @@ public class BattleshipAlexSamuel {
 							infoMapa[shipH2Y][shipH2X] = "X";
 							infoMapa[shipH2Y][shipH2X + 1] = "X";
 							System.out.println("\tAmazing!!! You sunk a ship!\n");
+							sunkShips += 1;
 					
 						}
 						break;
@@ -402,6 +404,7 @@ public class BattleshipAlexSamuel {
 							infoMapa[shipV2Y][shipV2X] = "X";
 							infoMapa[shipV2Y + 1][shipV2X] = "X";
 							System.out.println("\tAmazing!!! You sunk a ship!\n");
+							sunkShips += 1;
 					
 						}
 						break;
@@ -423,14 +426,39 @@ public class BattleshipAlexSamuel {
 			// CUANDO EL JUEGO TERMINA ESTA PARTE SE ENCARGA DE MOSTRAR LA INFO DE
 			// LA PARTIDA, LAS PARTIDAS JUGADAS Y PREGUNTAR SI SE QUIERE VOLVER A JUGAR
 			// SI SE QUIERE VOLVER A JUGAR LLAMAR A restart()
+			boolean valid = false;
+			String answer;
 			
+			System.out.println("\tThe game is over!");
+			System.out.println("\t"+ playedGames + " Game played");
+			do {
+				System.out.println("\tDo you want to play again? (Y/N)");
+				answer = input.nextLine();
+
+			} while (!(answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("N")));
 			
+			if (answer.equalsIgnoreCase("Y")) {
+				restart();
+			}
+			else {
+				System.exit(-1);
+			}
 		}
 		public static void restart () {
 			
 			// SI SE QUIERE VOLVER A JUGAR HAY QUE REINICIAR TODAS LAS VARIABLES Y VOLVER A LANZAR EL JUEGO
 			
+			playedGames += 1;
+			sunkShips = 0;
+			shootsFired = 0;
 			
-			
+			initialize();
+			shipGeneration();
+			updateMap();
 		}
 }
+
+
+
+
+
