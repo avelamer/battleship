@@ -8,11 +8,12 @@ import java.util.Scanner;
 
 public class BattleshipAlexSamuel {
 
+	static int mapLength = 6;
 	
-	static int[] beginingNumbers = new int []  {1,2,3,4,5}; 
-	static int[][] infoShips = new int [5][5];
-	static int[][] shootedQuadrants = new int [5][5];
-	static String[][] infoMapa = new String [5] [5];
+	static String[] topLetters = new String [] {"A","B","C","D","E","F","G","H","I","J"};
+	static int[][] infoShips = new int [mapLength][mapLength];
+	static int[][] shootedQuadrants = new int [mapLength][mapLength];
+	static String[][] infoMapa = new String [mapLength] [mapLength];
 
 	static Scanner input = new Scanner(System.in);
 	
@@ -31,21 +32,26 @@ public class BattleshipAlexSamuel {
 	static int playedGames = 1;
 	
 	
+	
+	
 		public static void main (String [] Args) {
 			
 			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
 			
+			//start();
+			
 			initialize();
 			
-			start();
-			
-			shipGeneration();
+			//shipGeneration();
 			
 			updateMap();
 			
-			end();
+			//end();
 		}
 		public static void initialize () {
+			
+			String response = "";
+			int userInput = 0;
 			
 			for (int i = 0; i< shootedQuadrants.length; i++) {
 				
@@ -56,14 +62,43 @@ public class BattleshipAlexSamuel {
 					infoMapa[i][j] = " ";
 				}
 			}
+			
+			/*while (!response.equalsIgnoreCase("a") && !response.equalsIgnoreCase("b")) {
+				
+				System.out.print("\n"
+						+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode \n\t");	  
+				response = input.next();
+			
+				if(response.equalsIgnoreCase("a")) {
+						
+					mapLength = 5;
+				}
+				else if (response.equalsIgnoreCase("b"))  {
+				
+					while (!(userInput >= 5 && userInput <= 10)) {
+						
+						System.out.print("\n"
+								+ "\tIntroduce the size for the map (n x n) from 5 to 10: ");	  
+						userInput = input.nextInt();
+						
+						if (userInput >= 5 && userInput <= 10) {
+							
+							mapLength = userInput;
+						}
+						else {
+							
+							System.out.print("\n\tInput not valid");
+						}
+					}
+				}
+				else {
+					
+					System.out.print("\n\tInput not valid");
+				}	
+			}*/
 		}
 		public static void start () {
-			
-			String response;
-			
-
-			// ESTA PARTE SE ENCARGA DE MOSTRAR EN PANTALLA EL INICIO DEL JUEGO		
-			// Y  DE PREGUNTAR AL JUGADOR EN QUE MODO DE JUEGO QUIERE JUGAR	   
+			  
 			
 	 System.out.print("    _______       _________    ___________   ___________                  __________    __________                 ___________      _________ \n"
 					+ "   |       |     |         |        |             |        |             |             |             |         |        |          |         |\n"
@@ -97,20 +132,7 @@ public class BattleshipAlexSamuel {
 					+ "                                               '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$!!!!!!!!!!!!!!!!!!,                                \n"
 					+ "                                           .....$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$.....                           \n"
 					+ "                    ,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¨`*•~-.¸       \n"
-				    );
-	 
-	
-			   
-	 System.out.print("\n"
-				+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode \n\t");	  
-			  	 response = input.next();
-			  if(response.equalsIgnoreCase("a") && response.length() == 1) {
-				
-			  }
-			  else {
-				  System.exit(-1);
-			  }
-			
+				    );	
 		}
 		public static void shipGeneration () {
 			
@@ -223,10 +245,9 @@ public class BattleshipAlexSamuel {
 			// ESTA PARTE SE ENCARGA DE ACTUALIZAR EL MAPA DE JUEGO
 			// BASICAMENTE HARA LOS PRINT DEL ARRAY
 			// AGUA: 0 TOCADO: # HUNDIDO: X
-			String inf = "\t|_____|_____|_____|_____|_____|";
-			String sup = "\t|     |     |     |     |     |";
-			String top = "\t_______________________________";
-			String topLetters = "\t   A     B     C     D     E   ";
+			String inf = "|_____";
+			String sup = "|     ";
+			String top = "______";
 			
 						// 			EJEMPLO TABLERO
 						// 	_______________________________
@@ -246,22 +267,55 @@ public class BattleshipAlexSamuel {
 						//	|     |  X  |     |  X  |  #  |
 						//	|_____|_____|_____|_____|_____|
 			
-			System.out.println(topLetters);
-			System.out.println(top);
+			System.out.print("\t"+"   ");
 			
-			for (int i = 0; i<infoMapa.length; i++) {
+			
+			// TOP LETTERS
+			for (int i = 0; i<mapLength; i++ ) {
 				
-				System.out.println(sup);
-				System.out.print("      "+beginingNumbers[i]+" ");
+				System.out.print(topLetters[i]+"     ");
+			}
+			System.out.print("\n\t");
+			
+			
+			// TOP LINE
+			for (int i = 0; i<mapLength; i++ ) {
+				
+				System.out.print(top);
+			}
+			System.out.print("_" + "\n\t");
+			
+			
+			// REST OF THE MAP
+			for (int i = 0; i<mapLength; i++) {
+				
+				
+				// TOP PART
+				for (int z = 0; z<mapLength; z++ ) {
+					
+					System.out.print(sup);
+				}
+				System.out.print("|" +"\n");
+				
+				
+				// LEFT NUMBER
+				System.out.print("      "+ i +" ");
 				
 			
+				// ROW WITH INFO
 				for (int j=0; j<infoMapa[i].length; j++) {
 								
 					System.out.print("|  " + infoMapa[i][j] + "  ");
 					
 				}
-				System.out.println("|");
-				System.out.println(inf);
+				System.out.print("|\n\t");
+				
+				// BOTTOM PART
+				for (int z = 0; z<mapLength; z++ ) {
+					
+					System.out.print(inf);
+				}
+				System.out.print("|" +"\n\t");
 				
 			}
 			System.out.println("\n\tShots fired: " + shootsFired);
@@ -437,7 +491,7 @@ public class BattleshipAlexSamuel {
 			System.out.println("\t"+ playedGames + " Game played");
 			do {
 				System.out.print("\tDo you want to play again? (Y/N) \n\t");
-				answer = input.nextLine();
+				answer = input.next();
 
 			} while (!(answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("N")));
 			
