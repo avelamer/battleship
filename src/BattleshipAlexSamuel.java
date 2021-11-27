@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class BattleshipAlexSamuel {
 
-	static int mapLength = 6;
+	static int mapLength =10;
 	
 	static String[] topLetters = new String [] {"A","B","C","D","E","F","G","H","I","J"};
 	static int[][] infoShips = new int [mapLength][mapLength];
@@ -31,9 +31,6 @@ public class BattleshipAlexSamuel {
 	static int shootsFired = 0;
 	static int playedGames = 1;
 	
-	
-	
-	
 		public static void main (String [] Args) {
 			
 			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
@@ -42,7 +39,7 @@ public class BattleshipAlexSamuel {
 			
 			initialize();
 			
-			//shipGeneration();
+			shipGeneration();
 			
 			updateMap();
 			
@@ -158,8 +155,8 @@ public class BattleshipAlexSamuel {
 			// SHIP LENGTH 3 HORIZONTAL
 			
 			// THE RANDOM COORDINATES ARE GENERATED
-			shipH3X = (int) (Math.random() * 3);
-			shipH3Y = (int) (Math.random() * 5);
+			shipH3X = (int) (Math.random() * (mapLength-2));
+			shipH3Y = (int) (Math.random() * mapLength);
 			
 			// THE SHIP IS CREATED TO THE RIGHT FROM THE CENTER OF THE SHIP
 			infoShips[shipH3Y][shipH3X]     = 1;
@@ -173,8 +170,8 @@ public class BattleshipAlexSamuel {
 			while (!valid) {
 				
 				// THE RANDOM COORDINATES ARE GENERATED
-				shipV3X = (int) (Math.random() * 5);
-				shipV3Y = (int) (Math.random() * 3);
+				shipV3X = (int) (Math.random() * mapLength);
+				shipV3Y = (int) (Math.random() * (mapLength-2));
 				
 				// WE CHECK IF ANY OF THE POSIBLE COORDINATES OF THIS SHIP COLIDES WITH ANY OTHER SHIP PREVIUSLY CREATED
 				if (infoShips[shipV3Y][shipV3X] == 0 && infoShips[shipV3Y + 1][shipV3X] == 0 && infoShips[shipV3Y + 2][shipV3X] == 0) {
@@ -198,8 +195,8 @@ public class BattleshipAlexSamuel {
 			while (!valid) {
 				
 				// THE RANDOM COORDINATES ARE GENERATED
-				shipH2X = (int) (Math.random() * 4);
-				shipH2Y = (int) (Math.random() * 5);
+				shipH2X = (int) (Math.random() * (mapLength-1));
+				shipH2Y = (int) (Math.random() * mapLength);
 				
 				// WE CHECK IF ANY OF THE POSIBLE COORDINATES OF THIS SHIP COLIDES WITH ANY OTHER SHIP PREVIUSLY CREATED
 				if (infoShips[shipH2Y][shipH2X] == 0 && infoShips[shipH2Y][shipH2X + 1] == 0){
@@ -222,8 +219,8 @@ public class BattleshipAlexSamuel {
 			while (!valid) {
 				
 				// THE RANDOM COORDINATES ARE GENERATED
-				shipV2X = (int) (Math.random() * 5);
-				shipV2Y = (int) (Math.random() * 4);
+				shipV2X = (int) (Math.random() * mapLength);
+				shipV2Y = (int) (Math.random() * (mapLength-1));
 				
 				// WE CHECK IF ANY OF THE POSIBLE COORDINATES OF THIS SHIP COLIDES WITH ANY OTHER SHIP PREVIUSLY CREATED
 				if (infoShips[shipV2Y][shipV2X] == 0 && infoShips[shipV2Y+1][shipV2X] == 0){
@@ -305,7 +302,7 @@ public class BattleshipAlexSamuel {
 				// ROW WITH INFO
 				for (int j=0; j<infoMapa[i].length; j++) {
 								
-					System.out.print("|  " + infoMapa[i][j] + "  ");
+					System.out.print("|  " + infoShips[i][j] + "  ");
 					
 				}
 				System.out.print("|\n\t");
@@ -515,8 +512,3 @@ public class BattleshipAlexSamuel {
 			updateMap();
 		}
 }
-
-
-
-
-
