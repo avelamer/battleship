@@ -41,7 +41,9 @@ public class BattleshipAlexSamuel {
 			
 			shipGeneration();
 			
-			updateMap();
+			//updateMap();
+			
+			newCoordinates();
 			
 			//end();
 		}
@@ -302,7 +304,7 @@ public class BattleshipAlexSamuel {
 				// ROW WITH INFO
 				for (int j=0; j<infoMapa[i].length; j++) {
 								
-					System.out.print("|  " + infoShips[i][j] + "  ");
+					System.out.print("|  " + infoMapa[i][j] + "  ");
 					
 				}
 				System.out.print("|\n\t");
@@ -331,38 +333,97 @@ public class BattleshipAlexSamuel {
 			
 			int X = 0,Y;
 			String coordinates;
+			boolean validX = true;
 
 						
 			System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
 						    +"\tInsert the coordinates: \n\t");
 							
+			
 			coordinates = input.next();
 			
-			while(!coordinates.startsWith("A")  && !coordinates.startsWith("B")  && !coordinates.startsWith("C")  && !coordinates.startsWith("D")  && !coordinates.startsWith("E") && !coordinates.startsWith("a")  && !coordinates.startsWith("b")  && !coordinates.startsWith("c")  && !coordinates.startsWith("d")  && !coordinates.startsWith("e") || coordinates.charAt(1) != ',' || Character.getNumericValue(coordinates.charAt(2)) < 1 || Character.getNumericValue(coordinates.charAt(2)) > 5 || coordinates.length() > 3) {
+			if(coordinates.startsWith("A") || coordinates.startsWith("a")){
+				X = 0;
+			}
+			else if(coordinates.startsWith("B") || coordinates.startsWith("b")){
+				X = 1;
+			}
+			else if(coordinates.startsWith("C") || coordinates.startsWith("c")){
+				X = 2;
+			}
+			else if(coordinates.startsWith("D") || coordinates.startsWith("d")){
+				X = 3;
+			}
+			else if(coordinates.startsWith("E") || coordinates.startsWith("e")){
+				X = 4;
+			}
+			else if(coordinates.startsWith("F") || coordinates.startsWith("f")){
+				X = 5;
+			}
+			else if(coordinates.startsWith("G") || coordinates.startsWith("g")){
+				X = 6;
+			}
+			else if(coordinates.startsWith("H") || coordinates.startsWith("h")){
+				X = 7;
+			}
+			else if(coordinates.startsWith("I") || coordinates.startsWith("i")){
+				X = 8;
+			}
+			else if(coordinates.startsWith("J") || coordinates.startsWith("j")){
+				X = 9;
+			}
+			else {
+				validX = false;
+			}
+			
+			Y = Character.getNumericValue(coordinates.charAt(2));
+			
+			while(!validX || coordinates.charAt(1) != ',' || Y < 0 || Y > mapLength ||X > mapLength ||coordinates.length() > 3) {
 
 					System.out.print("\n\tThe coordinates could not be found, please try again");
 					System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
 									+"\tInsert the coordinates: \n\t");
 					
 					coordinates = input.next();
-			}
+			
+					validX = true;
+					
 				if(coordinates.startsWith("A") || coordinates.startsWith("a")){
-					X = 1;
+					X = 0;
 				}
 				else if(coordinates.startsWith("B") || coordinates.startsWith("b")){
-					X = 2;
+					X = 1;
 				}
 				else if(coordinates.startsWith("C") || coordinates.startsWith("c")){
-					X = 3;
+					X = 2;
 				}
 				else if(coordinates.startsWith("D") || coordinates.startsWith("d")){
-					X = 4;
+					X = 3;
 				}
 				else if(coordinates.startsWith("E") || coordinates.startsWith("e")){
+					X = 4;
+				}
+				else if(coordinates.startsWith("F") || coordinates.startsWith("f")){
 					X = 5;
 				}
+				else if(coordinates.startsWith("G") || coordinates.startsWith("g")){
+					X = 6;
+				}
+				else if(coordinates.startsWith("H") || coordinates.startsWith("h")){
+					X = 7;
+				}
+				else if(coordinates.startsWith("I") || coordinates.startsWith("i")){
+					X = 8;
+				}
+				else if(coordinates.startsWith("J") || coordinates.startsWith("j")){
+					X = 9;
+				}
+				else {
+					validX = false;
+				}
+			}
 			
-			Y = Character.getNumericValue(coordinates.charAt(2));
+			
 			
 			
 			shootAt(X,Y);
@@ -377,16 +438,16 @@ public class BattleshipAlexSamuel {
 			
 
 			
-			if (shootedQuadrants[x-1][y-1] == 0) {
+			if (shootedQuadrants[x][y] == 0) {
 				
-				shootedQuadrants[x-1][y-1] = 1;
+				shootedQuadrants[x][y] = 1;
 				shootsFired += 1;
 				
-				switch (infoShips[y-1][x-1]) {
+				switch (infoShips[y][x]) {
 			
 					case 0: 
 				 
-						infoMapa[y-1][x-1] = "0";
+						infoMapa[y][x] = "0";
 						System.out.println("\tWhat a shame, it's water :(\n");
 						break;
 					case 1:
@@ -395,7 +456,7 @@ public class BattleshipAlexSamuel {
 				
 						if (remainingQuadrants1 >0) {
 					
-							infoMapa[y-1][x-1] = "#";
+							infoMapa[y][x] = "#";
 							System.out.println("\tWow, you hit a ship :)\n");
 						}
 						else {
@@ -414,7 +475,7 @@ public class BattleshipAlexSamuel {
 				
 						if (remainingQuadrants2 >0) {
 					
-							infoMapa[y-1][x-1] = "#";
+							infoMapa[y][x] = "#";
 							System.out.println("\tWow, you hit a ship :)\n");
 						}
 						else {
@@ -433,7 +494,7 @@ public class BattleshipAlexSamuel {
 				
 						if (remainingQuadrants3 >0) {
 					
-							infoMapa[y-1][x-1] = "#";
+							infoMapa[y][x] = "#";
 							System.out.println("\tWow, you hit a ship :)\n");
 						}
 						else {
@@ -451,7 +512,7 @@ public class BattleshipAlexSamuel {
 				
 						if (remainingQuadrants4 >0) {
 					
-							infoMapa[y-1][x-1] = "#";
+							infoMapa[y][x] = "#";
 							System.out.println("\tWow, you hit a ship :)\n");
 						}
 						else {
@@ -506,6 +567,10 @@ public class BattleshipAlexSamuel {
 			playedGames += 1;
 			sunkShips = 0;
 			shootsFired = 0;
+			remainingQuadrants1 = 3;
+			remainingQuadrants2 = 3;
+			remainingQuadrants3 = 2;
+			remainingQuadrants4 = 2;
 			
 			initialize();
 			shipGeneration();
