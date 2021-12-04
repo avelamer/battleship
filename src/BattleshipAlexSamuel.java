@@ -7,28 +7,50 @@
 import java.util.Scanner;
 
 public class BattleshipAlexSamuel {
-
-	static int mapLength =10;
+	
+	static int mapLength;
 	
 	static String[] topLetters = new String [] {"A","B","C","D","E","F","G","H","I","J"};
-	static int[][] infoShips = new int [mapLength][mapLength];
-	static int[][] shootedQuadrants = new int [mapLength][mapLength];
-	static String[][] infoMapa = new String [mapLength] [mapLength];
+	// BASIC - PLAYER 1
+	static int[][] infoShips = new int [10][10];
+	static int[][] shootedQuadrants = new int [10][10];
+	static String[][] infoMapa = new String [10] [10];
+	// PLAYER 2
+	static int[][] infoShipsP2 = new int [10][10];
+	static int[][] shootedQuadrantsP2 = new int [10][10];
+	static String[][] infoMapaP2 = new String [10] [10];
 
 	static Scanner input = new Scanner(System.in);
 	
+	// BASIC - PLAYER 1
 	static int shipH3X , shipH3Y; // VARIABLES FOR SHIP LENGTH 3 HORIZONTAL   1
 	static int shipV3X , shipV3Y; // VARIABLES FOR SHIP LENGTH 3 VERTICAL     2
 	static int shipH2X , shipH2Y; // VARIABLES FOR SHIP LENGTH 2 HORIZONTAL   3
 	static int shipV2X , shipV2Y; // VARIABLES FOR SHIP LENGTH 2 VERTICAL     4
-	
+	// PLAYER 2
+	static int shipH3XP2 , shipH3YP2; // VARIABLES FOR SHIP LENGTH 3 HORIZONTAL   1
+	static int shipV3XP2 , shipV3YP2; // VARIABLES FOR SHIP LENGTH 3 VERTICAL     2
+	static int shipH2XP2 , shipH2YP2; // VARIABLES FOR SHIP LENGTH 2 HORIZONTAL   3
+	static int shipV2XP2 , shipV2YP2; // VARIABLES FOR SHIP LENGTH 2 VERTICAL     4
+
+	// BASIC - PLAYER 1
 	static int remainingQuadrants1 = 3;
 	static int remainingQuadrants2 = 3;
 	static int remainingQuadrants3 = 2;
 	static int remainingQuadrants4 = 2;
+	// PLAYER 2
+	static int remainingQuadrants1P2 = 3;
+	static int remainingQuadrants2P2 = 3;
+	static int remainingQuadrants3P2 = 2;
+	static int remainingQuadrants4P2 = 2;
 	
+	// BASIC - PLAYER 1
 	static int sunkShips = 0;
 	static int shootsFired = 0;
+	// PLAYER 2
+	static int sunkShipsP2 = 0;
+	static int shootsFiredP2 = 0;
+	
 	static int playedGames = 1;
 	
 		public static void main (String [] Args) {
@@ -310,7 +332,7 @@ public class BattleshipAlexSamuel {
 				// ROW WITH INFO
 				for (int j=0; j<mapLength; j++) {
 								
-					System.out.print("|  " + infoShips[i][j] + "  ");
+					System.out.print("|  " + infoMapa[i][j] + "  ");
 					
 				}
 				System.out.print("|\n\t");
@@ -336,8 +358,6 @@ public class BattleshipAlexSamuel {
 			}
 		}
 		public static void newCoordinates() {
-			
-			System.out.println("map length = " + mapLength);
 			
 			int X = 0,Y;
 			String coordinates;
@@ -551,10 +571,10 @@ public class BattleshipAlexSamuel {
 			boolean valid = false;
 			String answer;
 			
-			System.out.println("\tThe game is over!");
-			System.out.println("\t"+ playedGames + " Game played");
+			System.out.println("\n\tThe game is over!");
+			System.out.println("\n\t"+ playedGames + " Game played");
 			do {
-				System.out.print("\tDo you want to play again? (Y/N) \n\t");
+				System.out.print("\n\tDo you want to play again? (Y/N) \n\t");
 				answer = input.next();
 
 			} while (!(answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("N")));
