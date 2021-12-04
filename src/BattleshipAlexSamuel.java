@@ -35,13 +35,13 @@ public class BattleshipAlexSamuel {
 			
 			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
 			
-			//start();
-			
+			start();
+
 			initialize();
 			
 			shipGeneration();
 			
-			//updateMap();
+			updateMap();
 			
 			newCoordinates();
 			
@@ -49,8 +49,7 @@ public class BattleshipAlexSamuel {
 		}
 		public static void initialize () {
 			
-			String response = "";
-			int userInput = 0;
+
 			
 			for (int i = 0; i< shootedQuadrants.length; i++) {
 				
@@ -62,39 +61,7 @@ public class BattleshipAlexSamuel {
 				}
 			}
 			
-			/*while (!response.equalsIgnoreCase("a") && !response.equalsIgnoreCase("b")) {
-				
-				System.out.print("\n"
-						+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode \n\t");	  
-				response = input.next();
 			
-				if(response.equalsIgnoreCase("a")) {
-						
-					mapLength = 5;
-				}
-				else if (response.equalsIgnoreCase("b"))  {
-				
-					while (!(userInput >= 5 && userInput <= 10)) {
-						
-						System.out.print("\n"
-								+ "\tIntroduce the size for the map (n x n) from 5 to 10: ");	  
-						userInput = input.nextInt();
-						
-						if (userInput >= 5 && userInput <= 10) {
-							
-							mapLength = userInput;
-						}
-						else {
-							
-							System.out.print("\n\tInput not valid");
-						}
-					}
-				}
-				else {
-					
-					System.out.print("\n\tInput not valid");
-				}	
-			}*/
 		}
 		public static void start () {
 			  
@@ -132,7 +99,46 @@ public class BattleshipAlexSamuel {
 					+ "                                           .....$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$.....                           \n"
 					+ "                    ,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¨`*•~-.¸       \n"
 				    );	
+	 System.out.println();
+	 
+		String response = "";
+		int userInput = 0;
+		
+	 while (!response.equalsIgnoreCase("a") && !response.equalsIgnoreCase("b")) {
+		
+		System.out.print("\n"
+				+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode \n\t");	  
+		response = input.next();
+	
+		if(response.equalsIgnoreCase("a")) {
+				
+			mapLength = 5;
 		}
+		else if (response.equalsIgnoreCase("b"))  {
+		
+			while (!(userInput >= 5 && userInput <= 10)) {
+				
+				System.out.print("\n"
+						+ "\tIntroduce the size for the map (n x n) from 5 to 10: ");	  
+				userInput = input.nextInt();
+				
+				if (userInput >= 5 && userInput <= 10) {
+					
+					mapLength = userInput;
+				}
+				else {
+					
+					System.out.print("\n\tInput not valid");
+				}
+			}
+		}
+		else {
+			
+			System.out.print("\n\tInput not valid");
+		}	
+	}
+		}
+
 		public static void shipGeneration () {
 			
 			// THIS SECTION IS IN CHARGE OF THE RANDOM GENERATION OF THE SHIPS
@@ -302,9 +308,9 @@ public class BattleshipAlexSamuel {
 				
 			
 				// ROW WITH INFO
-				for (int j=0; j<infoMapa[i].length; j++) {
+				for (int j=0; j<mapLength; j++) {
 								
-					System.out.print("|  " + infoMapa[i][j] + "  ");
+					System.out.print("|  " + infoShips[i][j] + "  ");
 					
 				}
 				System.out.print("|\n\t");
@@ -330,6 +336,8 @@ public class BattleshipAlexSamuel {
 			}
 		}
 		public static void newCoordinates() {
+			
+			System.out.println("map length = " + mapLength);
 			
 			int X = 0,Y;
 			String coordinates;
@@ -378,7 +386,7 @@ public class BattleshipAlexSamuel {
 			
 			Y = Character.getNumericValue(coordinates.charAt(2));
 			
-			while(!validX || coordinates.charAt(1) != ',' || Y < 0 || Y > mapLength ||X > mapLength ||coordinates.length() > 3) {
+			while(!validX || coordinates.charAt(1) != ',' || Y < 0 || Y > mapLength-1 ||X > mapLength-1 ||coordinates.length() > 3) {
 
 					System.out.print("\n\tThe coordinates could not be found, please try again");
 					System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
@@ -421,10 +429,8 @@ public class BattleshipAlexSamuel {
 				else {
 					validX = false;
 				}
+				Y = Character.getNumericValue(coordinates.charAt(2));
 			}
-			
-			
-			
 			
 			shootAt(X,Y);
 		}
