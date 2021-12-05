@@ -10,6 +10,9 @@ public class BattleshipAlexSamuel {
 	
 	static int mapLength;
 	
+	static boolean twoPlayerMode;
+	static int player = 1;
+	
 	static String[] topLetters = new String [] {"A","B","C","D","E","F","G","H","I","J"};
 	// BASIC - PLAYER 1
 	static int[][] infoShips = new int [10][10];
@@ -83,7 +86,18 @@ public class BattleshipAlexSamuel {
 				}
 			}
 			
-			
+			if (twoPlayerMode) {
+				
+				for (int i = 0; i< shootedQuadrantsP2.length; i++) {
+					
+					for (int j = 0; j< shootedQuadrantsP2.length; j++) {
+						
+						shootedQuadrantsP2[i][j] = 0;
+						infoShipsP2[i][j] = 0;
+						infoMapaP2[i][j] = " ";
+					}
+				}
+			}	
 		}
 		public static void start () {
 			  
@@ -151,6 +165,27 @@ public class BattleshipAlexSamuel {
 				else {
 					
 					System.out.print("\n\tInput not valid");
+				}
+			}
+			while (!(userInput == 1) && !(userInput == 2)) {
+				
+				System.out.print("\n"
+						+ "\tIntroduce the number of players (1 or 2):  ");	  
+				userInput = input.nextInt();
+				
+				if (userInput == 1) {
+					
+					twoPlayerMode = false;
+				}
+				else if (userInput == 2) {
+					
+					twoPlayerMode = true;
+					
+				}
+				else {
+					
+					System.out.println("\n\tInput not valid");
+					System.out.println("\n\tInput not vwqewalid");
 				}
 			}
 		}
@@ -265,7 +300,103 @@ public class BattleshipAlexSamuel {
 			}
 			// THE VARIABLE TO STOP THE LOOP IS CHANGED
 			valid = false;
-
+			
+			
+			
+			
+			
+//...................................................................................................................................................
+			
+			// SECOND PLAYER
+			
+			
+			
+			if (twoPlayerMode) {
+				
+				// SHIP LENGTH 3 HORIZONTAL
+				
+				// THE RANDOM COORDINATES ARE GENERATED
+				shipH3XP2 = (int) (Math.random() * (mapLength-2));
+				shipH3YP2 = (int) (Math.random() * mapLength);
+				
+				// THE SHIP IS CREATED TO THE RIGHT FROM THE CENTER OF THE SHIP
+				infoShipsP2[shipH3YP2][shipH3XP2]     = 1;
+				infoShipsP2[shipH3YP2][shipH3XP2 + 1] = 1;
+				infoShipsP2[shipH3YP2][shipH3XP2 + 2] = 1;
+				
+				// SHIP LENGTH 3 VERTICAL
+				
+				// A LOOP IS CREATED TO CREATE NEW COORDINATES POR THE SHIP CENTER UNTIL ANY COORDINATES OF THE SHIP DOES NOT
+				// COINCIDE WITH ANY OTHER COORDINATES OF PREVIUSLY CREATED SHIPS
+				while (!valid) {
+					
+					// THE RANDOM COORDINATES ARE GENERATED
+					shipV3XP2 = (int) (Math.random() * mapLength);
+					shipV3YP2 = (int) (Math.random() * (mapLength-2));
+					
+					// WE CHECK IF ANY OF THE POSIBLE COORDINATES OF THIS SHIP COLIDES WITH ANY OTHER SHIP PREVIUSLY CREATED
+					if (infoShipsP2[shipV3YP2][shipV3XP2] == 0 && infoShipsP2[shipV3YP2 + 1][shipV3XP2] == 0 && infoShipsP2[shipV3YP2 + 2][shipV3XP2] == 0) {
+						
+						// THE SHIP IS CREATED DOWNWARDS FROM THE CENTER OF THE SHIP
+						infoShipsP2[shipV3YP2]    [shipV3XP2] = 2;
+						infoShipsP2[shipV3YP2 + 1][shipV3XP2] = 2;
+						infoShipsP2[shipV3YP2 + 2][shipV3XP2] = 2;
+						
+						// THE VARIABLE TO STOP THE LOOP IS CHANGED
+						valid = true;
+					}
+				}
+				// THE VARIABLE TO STOP THE LOOP IS CHANGED FOR THE NEXT SHIP
+				valid = false;
+				
+				// SHIP LENGTH 2 HORIZONTAL
+				
+				// A LOOP IS CREATED TO CREATE NEW COORDINATES POR THE SHIP CENTER UNTIL ANY COORDINATES OF THE SHIP DOES NOT
+				// COINCIDE WITH ANY OTHER COORDINATES OF PREVIUSLY CREATED SHIPS
+				while (!valid) {
+					
+					// THE RANDOM COORDINATES ARE GENERATED
+					shipH2XP2 = (int) (Math.random() * (mapLength-1));
+					shipH2YP2 = (int) (Math.random() * mapLength);
+					
+					// WE CHECK IF ANY OF THE POSIBLE COORDINATES OF THIS SHIP COLIDES WITH ANY OTHER SHIP PREVIUSLY CREATED
+					if (infoShipsP2[shipH2YP2][shipH2XP2] == 0 && infoShipsP2[shipH2YP2][shipH2XP2 + 1] == 0){
+						
+						// THE SHIP IS CREATED TO THE RIGHT FROM THE CENTER OF THE SHIP
+						infoShipsP2[shipH2YP2][shipH2XP2]     = 3;
+						infoShipsP2[shipH2YP2][shipH2XP2 + 1] = 3;
+						
+						// THE VARIABLE TO STOP THE LOOP IS CHANGED
+						valid = true;
+					}
+				}
+				// THE VARIABLE TO STOP THE LOOP IS CHANGED FOR THE NEXT SHIP
+				valid = false;
+				
+				// SHIP LENGTH 2 VERTICAL
+				
+				// A LOOP IS CREATED TO CREATE NEW COORDINATES POR THE SHIP CENTER UNTIL ANY COORDINATES OF THE SHIP DOES NOT
+				// COINCIDE WITH ANY OTHER COORDINATES OF PREVIUSLY CREATED SHIPS
+				while (!valid) {
+					
+					// THE RANDOM COORDINATES ARE GENERATED
+					shipV2XP2 = (int) (Math.random() * mapLength);
+					shipV2YP2 = (int) (Math.random() * (mapLength-1));
+					
+					// WE CHECK IF ANY OF THE POSIBLE COORDINATES OF THIS SHIP COLIDES WITH ANY OTHER SHIP PREVIUSLY CREATED
+					if (infoShipsP2[shipV2YP2][shipV2XP2] == 0 && infoShipsP2[shipV2YP2+1][shipV2XP2] == 0){
+						
+						// THE SHIP IS CREATED TO THE RIGHT FROM THE CENTER OF THE SHIP
+						infoShipsP2[shipV2YP2]    [shipV2XP2] = 4;
+						infoShipsP2[shipV2YP2 + 1][shipV2XP2] = 4;
+						
+						// THE VARIABLE TO STOP THE LOOP IS CHANGED
+						valid = true;
+					}
+				}
+				// THE VARIABLE TO STOP THE LOOP IS CHANGED
+				valid = false;
+			}
 		}
 		public static void updateMap () {
 			
@@ -276,7 +407,13 @@ public class BattleshipAlexSamuel {
 			String sup = "|     ";
 			String top = "______";
 			
-						// 			EJEMPLO TABLERO
+			
+			if (twoPlayerMode) {
+				
+				System.out.println("\n\t"+"Player "+ player + "\n");
+			}
+
+						// 			Board example
 						// 	_______________________________
 						//	|     |     |     |     |     |
 						//	|  #  |  A  |     |  X  |     |
@@ -331,9 +468,15 @@ public class BattleshipAlexSamuel {
 			
 				// ROW WITH INFO
 				for (int j=0; j<mapLength; j++) {
-								
-					System.out.print("|  " + infoMapa[i][j] + "  ");
-					
+						
+					if (player == 1) {
+						
+						System.out.print("|  " + infoMapa[i][j] + "  ");
+					}
+					else {
+						
+						System.out.print("|  " + infoMapaP2[i][j] + "  ");
+					}
 				}
 				System.out.print("|\n\t");
 				
@@ -345,17 +488,19 @@ public class BattleshipAlexSamuel {
 				System.out.print("|" +"\n\t");
 				
 			}
-			System.out.println("\n\tShots fired: " + shootsFired);
-			System.out.println("\tShips sunk: " + sunkShips);
-			
-			if (sunkShips <= 3) {
+			if (player == 1) {
 				
-				newCoordinates();
+				System.out.println("\n\tShots fired: " + shootsFired);
+				System.out.println("\tShips sunk: " + sunkShips);
 			}
 			else {
 				
-				end();
+				System.out.println("\n\tShots fired: " + shootsFiredP2);
+				System.out.println("\tShips sunk: " + sunkShipsP2);
 			}
+
+			
+
 		}
 		public static void newCoordinates() {
 			
@@ -464,114 +609,257 @@ public class BattleshipAlexSamuel {
 			
 
 			
-			if (shootedQuadrants[x][y] == 0) {
+			if (player == 1) {
 				
-				shootedQuadrants[x][y] = 1;
-				shootsFired += 1;
+				if (shootedQuadrants[x][y] == 0) {
+					
+					shootedQuadrants[x][y] = 1;
+					shootsFired += 1;
+					
+					switch (infoShips[y][x]) {
 				
-				switch (infoShips[y][x]) {
-			
-					case 0: 
-				 
-						infoMapa[y][x] = "0";
-						System.out.println("\tWhat a shame, it's water :(\n");
-						break;
-					case 1:
-				
-						remainingQuadrants1 -= 1;
-				
-						if (remainingQuadrants1 >0) {
+						case 0: 
+					 
+							infoMapa[y][x] = "0";
+							System.out.println("\tWhat a shame, it's water :(\n");
+							break;
+						case 1:
 					
-							infoMapa[y][x] = "#";
-							System.out.println("\tWow, you hit a ship :)\n");
-						}
-						else {
+							remainingQuadrants1 -= 1;
 					
-							infoMapa[shipH3Y][shipH3X] = "X";
-							infoMapa[shipH3Y][shipH3X + 1] = "X";
-							infoMapa[shipH3Y][shipH3X + 2] = "X";
-							System.out.println("\tAmazing!!! You sunk a ship!\n");
-							sunkShips += 1;
+							if (remainingQuadrants1 >0) {
+						
+								infoMapa[y][x] = "#";
+								System.out.println("\tWow, you hit a ship :)\n");
+							}
+							else {
+						
+								infoMapa[shipH3Y][shipH3X] = "X";
+								infoMapa[shipH3Y][shipH3X + 1] = "X";
+								infoMapa[shipH3Y][shipH3X + 2] = "X";
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShips += 1;
+						
+							}
+							break;
+						case 2:
+						
+							remainingQuadrants2 -= 1;
 					
-						}
-						break;
-					case 2:
+							if (remainingQuadrants2 >0) {
+						
+								infoMapa[y][x] = "#";
+								System.out.println("\tWow, you hit a ship :)\n");
+							}
+							else {
+						
+								infoMapa[shipV3Y][shipV3X] = "X";
+								infoMapa[shipV3Y + 1][shipV3X] = "X";
+								infoMapa[shipV3Y + 2][shipV3X] = "X";
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShips += 1;
+						
+							}
+							break;
+						case 3:
+						
+							remainingQuadrants3 -= 1;
 					
-						remainingQuadrants2 -= 1;
-				
-						if (remainingQuadrants2 >0) {
+							if (remainingQuadrants3 >0) {
+						
+								infoMapa[y][x] = "#";
+								System.out.println("\tWow, you hit a ship :)\n");
+							}
+							else {
+						
+								infoMapa[shipH2Y][shipH2X] = "X";
+								infoMapa[shipH2Y][shipH2X + 1] = "X";
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShips += 1;
+						
+							}
+							break;
+						case 4:
+						
+							remainingQuadrants4 -= 1;
 					
-							infoMapa[y][x] = "#";
-							System.out.println("\tWow, you hit a ship :)\n");
-						}
-						else {
-					
-							infoMapa[shipV3Y][shipV3X] = "X";
-							infoMapa[shipV3Y + 1][shipV3X] = "X";
-							infoMapa[shipV3Y + 2][shipV3X] = "X";
-							System.out.println("\tAmazing!!! You sunk a ship!\n");
-							sunkShips += 1;
-					
-						}
-						break;
-					case 3:
-					
-						remainingQuadrants3 -= 1;
-				
-						if (remainingQuadrants3 >0) {
-					
-							infoMapa[y][x] = "#";
-							System.out.println("\tWow, you hit a ship :)\n");
-						}
-						else {
-					
-							infoMapa[shipH2Y][shipH2X] = "X";
-							infoMapa[shipH2Y][shipH2X + 1] = "X";
-							System.out.println("\tAmazing!!! You sunk a ship!\n");
-							sunkShips += 1;
-					
-						}
-						break;
-					case 4:
-					
-						remainingQuadrants4 -= 1;
-				
-						if (remainingQuadrants4 >0) {
-					
-							infoMapa[y][x] = "#";
-							System.out.println("\tWow, you hit a ship :)\n");
-						}
-						else {
-					
-							infoMapa[shipV2Y][shipV2X] = "X";
-							infoMapa[shipV2Y + 1][shipV2X] = "X";
-							System.out.println("\tAmazing!!! You sunk a ship!\n");
-							sunkShips += 1;
-					
-						}
-						break;
-					
-					default: System.out.println("\tERROR");
+							if (remainingQuadrants4 >0) {
+						
+								infoMapa[y][x] = "#";
+								System.out.println("\tWow, you hit a ship :)\n");
+							}
+							else {
+						
+								infoMapa[shipV2Y][shipV2X] = "X";
+								infoMapa[shipV2Y + 1][shipV2X] = "X";
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShips += 1;
+						
+							}
+							break;
+						
+						default: System.out.println("\tERROR");
+					}
 				}
+				else {
+					
+					System.out.println("\tYou have already shooted at this cuadrant.");
+					newCoordinates();
+					
+				}
+				
+			}
+			
+//.............................................................................................................................................................
+			
+			// Player 2
+			
+			
+			else {
+				
+				
+				if (shootedQuadrantsP2[x][y] == 0) {
+					
+					shootedQuadrantsP2[x][y] = 1;
+					shootsFiredP2 += 1;
+					
+					switch (infoShipsP2[y][x]) {
+				
+						case 0: 
+					 
+							infoMapaP2[y][x] = "0";
+							System.out.println("\tWhat a shame, it's water :(\n");
+							break;
+						case 1:
+					
+							remainingQuadrants1P2 -= 1;
+					
+							if (remainingQuadrants1P2 >0) {
+						
+								infoMapaP2[y][x] = "#";
+								System.out.println("\tWow, you hit a ship :)\n");
+							}
+							else {
+						
+								infoMapaP2[shipH3YP2][shipH3XP2] = "X";
+								infoMapaP2[shipH3YP2][shipH3XP2 + 1] = "X";
+								infoMapaP2[shipH3YP2][shipH3XP2 + 2] = "X";
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShipsP2 += 1;
+						
+							}
+							break;
+						case 2:
+						
+							remainingQuadrants2P2 -= 1;
+					
+							if (remainingQuadrants2P2 >0) {
+						
+								infoMapaP2[y][x] = "#";
+								System.out.println("\tWow, you hit a ship :)\n");
+							}
+							else {
+						
+								infoMapaP2[shipV3YP2][shipV3XP2] = "X";
+								infoMapaP2[shipV3YP2 + 1][shipV3XP2] = "X";
+								infoMapaP2[shipV3YP2 + 2][shipV3XP2] = "X";
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShipsP2 += 1;
+						
+							}
+							break;
+						case 3:
+						
+							remainingQuadrants3P2 -= 1;
+					
+							if (remainingQuadrants3P2 >0) {
+						
+								infoMapaP2[y][x] = "#";
+								System.out.println("\tWow, you hit a ship :)\n");
+							}
+							else {
+						
+								infoMapaP2[shipH2YP2][shipH2XP2] = "X";
+								infoMapaP2[shipH2YP2][shipH2XP2 + 1] = "X";
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShipsP2 += 1;
+						
+							}
+							break;
+						case 4:
+						
+							remainingQuadrants4P2 -= 1;
+					
+							if (remainingQuadrants4P2 >0) {
+						
+								infoMapaP2[y][x] = "#";
+								System.out.println("\tWow, you hit a ship :)\n");
+							}
+							else {
+						
+								infoMapaP2[shipV2YP2][shipV2XP2] = "X";
+								infoMapaP2[shipV2YP2 + 1][shipV2XP2] = "X";
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShipsP2 += 1;
+						
+							}
+							break;
+						
+						default: System.out.println("\tERROR");
+					}
+				}
+				
+				else {
+					
+					System.out.println("\tYou have already shooted at this cuadrant.");
+					newCoordinates();
+					
+				}	
+			}
+		
+			updateMap();
+			if (twoPlayerMode) {
+				
+				if (player == 1) {
+					
+					player = 2;
+				}
+				else {
+					player = 1;
+				}
+				updateMap();
+			}
+
+			if (sunkShips <= 3 && sunkShipsP2 <= 3) {
+				
+				newCoordinates();
 			}
 			else {
 				
-				System.out.println("\tYou have already shooted at this cuadrant.");
-				newCoordinates();
-				
+				end();
 			}
-					
-			updateMap();
+			
 		}
 		public static void end () {
 			
 			// CUANDO EL JUEGO TERMINA ESTA PARTE SE ENCARGA DE MOSTRAR LA INFO DE
 			// LA PARTIDA, LAS PARTIDAS JUGADAS Y PREGUNTAR SI SE QUIERE VOLVER A JUGAR
 			// SI SE QUIERE VOLVER A JUGAR LLAMAR A restart()
-			boolean valid = false;
+			//boolean valid = false;
 			String answer;
 			
 			System.out.println("\n\tThe game is over!");
+			if (twoPlayerMode){
+				
+				if (sunkShips == 4) {
+					
+					System.out.println("\n\tThe winner is PLAYER 1");
+				}
+				else if (sunkShipsP2 == 4) {
+					
+					System.out.println("\n\tThe winner is PLAYER 2");
+				}
+			}
 			System.out.println("\n\t"+ playedGames + " Game played");
 			do {
 				System.out.print("\n\tDo you want to play again? (Y/N) \n\t");
@@ -590,6 +878,7 @@ public class BattleshipAlexSamuel {
 			
 			// SI SE QUIERE VOLVER A JUGAR HAY QUE REINICIAR TODAS LAS VARIABLES Y VOLVER A LANZAR EL JUEGO
 			
+			player = 1;
 			playedGames += 1;
 			sunkShips = 0;
 			shootsFired = 0;
@@ -597,9 +886,16 @@ public class BattleshipAlexSamuel {
 			remainingQuadrants2 = 3;
 			remainingQuadrants3 = 2;
 			remainingQuadrants4 = 2;
+			sunkShipsP2 = 0;
+			shootsFiredP2 = 0;
+			remainingQuadrants1P2 = 3;
+			remainingQuadrants2P2 = 3;
+			remainingQuadrants3P2 = 2;
+			remainingQuadrants4P2 = 2;
 			
 			initialize();
 			shipGeneration();
 			updateMap();
+			newCoordinates();
 		}
 }
