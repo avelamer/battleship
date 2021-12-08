@@ -10,6 +10,8 @@ public class BattleshipAlexSamuel {
 	
 	static int mapLength;
 	
+	static String water,hit,sunk;
+	static boolean symbolsselected;
 	static boolean twoPlayerMode;
 	static int player = 1;
 	
@@ -139,6 +141,7 @@ public class BattleshipAlexSamuel {
 	 
 		String response = "";
 		int userInput = 0;
+		String symbolsresponse = "";
 		
 	 while (!response.equalsIgnoreCase("a") && !response.equalsIgnoreCase("b")) {
 		
@@ -185,7 +188,52 @@ public class BattleshipAlexSamuel {
 				else {
 					
 					System.out.println("\n\tInput not valid");
-					System.out.println("\n\tInput not vwqewalid");
+		
+				}
+			}
+			while (!symbolsresponse.equalsIgnoreCase("original") && !symbolsresponse.equalsIgnoreCase("costumized")) {
+				System.out.print("\n"
+						+ "\tSelect the wanted symbols for water, hit, sunk (original or costumized): ");
+				symbolsresponse = input.next();
+				
+				if (symbolsresponse.equalsIgnoreCase("original")) {
+					symbolsselected = false;
+				}
+				else if (symbolsresponse.equalsIgnoreCase("costumized")) {
+					symbolsselected = true;
+					System.out.print("\n"
+							+ "\tSelect the symbol for water (use just one character): ");
+						water = input.next();
+						while(water.length() > 1) {
+							System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+							System.out.print("\n"
+									+ "\tSelect the symbol for water (use just one character): ");
+								water = input.next();
+						}
+					System.out.print("\n"
+							+ "\tSelect the symbol for hit (use just one character): ");
+						hit = input.next();
+						while(hit.length() > 1) {
+							System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+							System.out.print("\n"
+									+ "\tSelect the symbol for hit (use just one character): ");
+								hit = input.next();
+						}
+					System.out.print("\n"
+							+ "\tSelect the symbol for sunk (use just one character): ");
+						sunk = input.next();
+						while(sunk.length() > 1) {
+							System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+							System.out.print("\n"
+									+ "\tSelect the symbol for sunk (use just one character): ");
+								sunk = input.next();
+						}
+					
+				}
+				else {
+					
+					System.out.println("\n\tInput not valid");
+					
 				}
 			}
 		}
@@ -619,81 +667,149 @@ public class BattleshipAlexSamuel {
 					switch (infoShips[y][x]) {
 				
 						case 0: 
-					 
+							
+							if(symbolsselected == false) {
 							infoMapa[y][x] = "0";
 							System.out.println("\tWhat a shame, it's water :(\n");
 							break;
+							}
+							else if(symbolsselected == true) {
+							infoMapa[y][x] = water;
+							System.out.println("\tWhat a shame, it's water :(\n");
+							break;
+							}
+							
 						case 1:
 					
 							remainingQuadrants1 -= 1;
 					
 							if (remainingQuadrants1 >0) {
-						
+								
+								if(symbolsselected == false) {
 								infoMapa[y][x] = "#";
 								System.out.println("\tWow, you hit a ship :)\n");
+								}
+								else if(symbolsselected == true) {
+								infoMapa[y][x] = hit;
+								System.out.println("\tWow, you hit a ship :)\n");
+								}
 							}
 							else {
-						
+								
+								if(symbolsselected == false) {
 								infoMapa[shipH3Y][shipH3X] = "X";
 								infoMapa[shipH3Y][shipH3X + 1] = "X";
 								infoMapa[shipH3Y][shipH3X + 2] = "X";
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShips += 1;
+								}
+								else if(symbolsselected == true) {
+								infoMapa[shipH3Y][shipH3X] = sunk;
+								infoMapa[shipH3Y][shipH3X + 1] = sunk;
+								infoMapa[shipH3Y][shipH3X + 2] = sunk;
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShips += 1;
+								}
 						
 							}
 							break;
+							
 						case 2:
 						
 							remainingQuadrants2 -= 1;
 					
 							if (remainingQuadrants2 >0) {
-						
+								
+								if(symbolsselected == false) {
 								infoMapa[y][x] = "#";
 								System.out.println("\tWow, you hit a ship :)\n");
+								}
+								else if(symbolsselected == true) {
+								infoMapa[y][x] = hit;
+								System.out.println("\tWow, you hit a ship :)\n");
+								}
 							}
 							else {
 						
+								if(symbolsselected == false) {
 								infoMapa[shipV3Y][shipV3X] = "X";
 								infoMapa[shipV3Y + 1][shipV3X] = "X";
 								infoMapa[shipV3Y + 2][shipV3X] = "X";
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShips += 1;
-						
+								}
+								else if(symbolsselected == true) {
+								infoMapa[shipV3Y][shipV3X] = sunk;
+								infoMapa[shipV3Y + 1][shipV3X] = sunk;
+								infoMapa[shipV3Y + 2][shipV3X] = sunk;
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShips += 1;
+								}
 							}
 							break;
+							
 						case 3:
 						
 							remainingQuadrants3 -= 1;
 					
 							if (remainingQuadrants3 >0) {
 						
+								if(symbolsselected == false) {
 								infoMapa[y][x] = "#";
 								System.out.println("\tWow, you hit a ship :)\n");
+								}
+								else if(symbolsselected == true) {
+								infoMapa[y][x] = hit;
+								System.out.println("\tWow, you hit a ship :)\n");
+								}
 							}
 							else {
 						
+								if(symbolsselected == false) {
 								infoMapa[shipH2Y][shipH2X] = "X";
 								infoMapa[shipH2Y][shipH2X + 1] = "X";
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShips += 1;
+								}
+								else if(symbolsselected == true) {
+								infoMapa[shipH2Y][shipH2X] = sunk;
+								infoMapa[shipH2Y][shipH2X + 1] = sunk;
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShips += 1;
+								}
 						
 							}
 							break;
+							
 						case 4:
 						
 							remainingQuadrants4 -= 1;
 					
 							if (remainingQuadrants4 >0) {
 						
+								if(symbolsselected == false) {
 								infoMapa[y][x] = "#";
 								System.out.println("\tWow, you hit a ship :)\n");
+								}
+								else if(symbolsselected == true) {
+								infoMapa[y][x] = hit;
+								System.out.println("\tWow, you hit a ship :)\n");
+								}
 							}
 							else {
-						
+								
+								if(symbolsselected == false) {
 								infoMapa[shipV2Y][shipV2X] = "X";
 								infoMapa[shipV2Y + 1][shipV2X] = "X";
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShips += 1;
+								}
+								else if(symbolsselected == true) {
+								infoMapa[shipV2Y][shipV2X] = sunk;
+								infoMapa[shipV2Y + 1][shipV2X] = sunk;
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShips += 1;
+								}
 						
 							}
 							break;
@@ -727,80 +843,147 @@ public class BattleshipAlexSamuel {
 				
 						case 0: 
 					 
+							if(symbolsselected == false) {
 							infoMapaP2[y][x] = "0";
 							System.out.println("\tWhat a shame, it's water :(\n");
 							break;
+							}
+							else if(symbolsselected == true) {
+							infoMapaP2[y][x] = water;
+							System.out.println("\tWhat a shame, it's water :(\n");
+							break;
+							}
+							
 						case 1:
 					
 							remainingQuadrants1P2 -= 1;
 					
 							if (remainingQuadrants1P2 >0) {
 						
+								if(symbolsselected == false) {
 								infoMapaP2[y][x] = "#";
 								System.out.println("\tWow, you hit a ship :)\n");
+								}
+								else if(symbolsselected == true) {
+								infoMapaP2[y][x] = hit;
+								System.out.println("\tWow, you hit a ship :)\n");
+								}
 							}
 							else {
 						
+								if(symbolsselected == false) {
 								infoMapaP2[shipH3YP2][shipH3XP2] = "X";
 								infoMapaP2[shipH3YP2][shipH3XP2 + 1] = "X";
 								infoMapaP2[shipH3YP2][shipH3XP2 + 2] = "X";
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShipsP2 += 1;
-						
+								}
+								else if(symbolsselected == true) {
+								infoMapaP2[shipH3YP2][shipH3XP2] = sunk;
+								infoMapaP2[shipH3YP2][shipH3XP2 + 1] = sunk;
+								infoMapaP2[shipH3YP2][shipH3XP2 + 2] = sunk;
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShipsP2 += 1;
+								}
 							}
 							break;
+							
 						case 2:
 						
 							remainingQuadrants2P2 -= 1;
 					
 							if (remainingQuadrants2P2 >0) {
 						
+								if(symbolsselected == false) {
 								infoMapaP2[y][x] = "#";
 								System.out.println("\tWow, you hit a ship :)\n");
+								}
+								else if(symbolsselected == true) {
+								infoMapaP2[y][x] = hit;
+								System.out.println("\tWow, you hit a ship :)\n");
+								}
 							}
 							else {
 						
+								if(symbolsselected == false) {
 								infoMapaP2[shipV3YP2][shipV3XP2] = "X";
 								infoMapaP2[shipV3YP2 + 1][shipV3XP2] = "X";
 								infoMapaP2[shipV3YP2 + 2][shipV3XP2] = "X";
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShipsP2 += 1;
-						
+								}
+								else if(symbolsselected == true) {
+								infoMapaP2[shipV3YP2][shipV3XP2] = sunk;
+								infoMapaP2[shipV3YP2 + 1][shipV3XP2] = sunk;
+								infoMapaP2[shipV3YP2 + 2][shipV3XP2] = sunk;
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShipsP2 += 1;
+								}
 							}
 							break;
+							
 						case 3:
 						
 							remainingQuadrants3P2 -= 1;
 					
 							if (remainingQuadrants3P2 >0) {
 						
+								if(symbolsselected == false) {
 								infoMapaP2[y][x] = "#";
 								System.out.println("\tWow, you hit a ship :)\n");
+								}
+								else if(symbolsselected == true) {
+								infoMapaP2[y][x] = hit;
+								System.out.println("\tWow, you hit a ship :)\n");
+								}
 							}
 							else {
 						
+								if(symbolsselected == false) {
 								infoMapaP2[shipH2YP2][shipH2XP2] = "X";
 								infoMapaP2[shipH2YP2][shipH2XP2 + 1] = "X";
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShipsP2 += 1;
+								}
+								else if(symbolsselected == true) {
+								infoMapaP2[shipH2YP2][shipH2XP2] = sunk;
+								infoMapaP2[shipH2YP2][shipH2XP2 + 1] = sunk;
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShipsP2 += 1;
+								}
 						
 							}
 							break;
+							
 						case 4:
 						
 							remainingQuadrants4P2 -= 1;
 					
 							if (remainingQuadrants4P2 >0) {
 						
+								if(symbolsselected == false) {
 								infoMapaP2[y][x] = "#";
 								System.out.println("\tWow, you hit a ship :)\n");
+								}
+								else if(symbolsselected == true) {
+								infoMapaP2[y][x] = hit;
+								System.out.println("\tWow, you hit a ship :)\n");
+								}
 							}
 							else {
 						
+								if(symbolsselected == false) {
 								infoMapaP2[shipV2YP2][shipV2XP2] = "X";
 								infoMapaP2[shipV2YP2 + 1][shipV2XP2] = "X";
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShipsP2 += 1;
+								}
+								else if(symbolsselected == true) {
+								infoMapaP2[shipV2YP2][shipV2XP2] = sunk;
+								infoMapaP2[shipV2YP2 + 1][shipV2XP2] = sunk;
+								System.out.println("\tAmazing!!! You sunk a ship!\n");
+								sunkShipsP2 += 1;
+								}
 						
 							}
 							break;
