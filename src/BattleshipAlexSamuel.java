@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class BattleshipAlexSamuel {
 	
 	static int mapLength;
-	
+	// BASIC - SYMBOL CHANGER AND 2P MODE
 	static String water,hit,sunk;
 	static boolean symbolsselected;
 	static boolean twoPlayerMode;
@@ -77,7 +77,7 @@ public class BattleshipAlexSamuel {
 		public static void initialize () {
 			
 
-			
+			//RESET OF THE VARIABLES FOR 1ST PLAYER
 			for (int i = 0; i< shootedQuadrants.length; i++) {
 				
 				for (int j = 0; j< shootedQuadrants.length; j++) {
@@ -87,7 +87,7 @@ public class BattleshipAlexSamuel {
 					infoMapa[i][j] = " ";
 				}
 			}
-			
+			//RESET OF THE VARIABLES FOR 2ND PLAYER
 			if (twoPlayerMode) {
 				
 				for (int i = 0; i< shootedQuadrantsP2.length; i++) {
@@ -138,11 +138,15 @@ public class BattleshipAlexSamuel {
 					+ "                    ,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¨`*•~-.¸       \n"
 				    );	
 	 System.out.println();
-	 
+	 	// LOCAL VARIABLES FOR THE LOOPING AND CONDITIONAL MANAGEMENT
 		String response = "";
 		int userInput = 0;
 		String symbolsresponse = "";
+	 // WE CREATE A LOOP WHICH ALLOWS THE USER TO PLAY THE NORMAL OR THE ADVANCED MODE; IN THE FIRST CASE THE MAP LENGTH IS SET TO 5 AUTOMATICALLY 
+	 //	IN THE SECOND CASE THE USER CAN SELECT THE DIMENSIONS OF THE MAP (5 UP TO 10). MOREOVER, THE USER CAN ALSO SELECT THE NUMBER OF PLAYERS (1 OR 2)
+	 // AND CHOOSE BETWEEN THE ORIGINAL SYMBOLOGY FOR WATER, HIT AND SUNK, OR A COSTUMIZED ONE, SELECTED BY HIMSELF.
 		
+	// LOOP TO CHECK THAT THE USER SELECTS A CORRECT OPTION (A OR B)	
 	 while (!response.equalsIgnoreCase("a") && !response.equalsIgnoreCase("b")) {
 		
 		System.out.print("\n"
@@ -153,8 +157,9 @@ public class BattleshipAlexSamuel {
 				
 			mapLength = 5;
 		}
+		// ADVANCED MODE SELECTED; THEN WE CREATE THE LOOPS AND CONDITIONALS SO HE CAN CHOOSE DIMENSIONS, NUMBER OF PLAERS AND SYMBOLOGY
 		else if (response.equalsIgnoreCase("b"))  {
-		
+			//DIMENSION SELECTION WITH LOOP TO CHECK THAT THE USER ENTERS A VALID DIMENSION
 			while (!(userInput >= 5 && userInput <= 10)) {
 				
 				System.out.print("\n"
@@ -170,6 +175,7 @@ public class BattleshipAlexSamuel {
 					System.out.print("\n\tInput not valid");
 				}
 			}
+			// NUMBER OF PLAYERS SELECTION WITH LOOP TO CHECK THAT THE USER INTRODUCES A VALID NUMBER OF PLAYERS
 			while (!(userInput == 1) && !(userInput == 2)) {
 				
 				System.out.print("\n"
@@ -191,6 +197,7 @@ public class BattleshipAlexSamuel {
 		
 				}
 			}
+			// SYMBOLOGY SELECTION WITH LOOP TO CHECK THAT THE USER INTRODUCES A VALID SYMBOLOGY
 			while (!symbolsresponse.equalsIgnoreCase("original") && !symbolsresponse.equalsIgnoreCase("costumized")) {
 				System.out.print("\n"
 						+ "\tSelect the wanted symbols for water, hit, sunk (original or costumized): ");
@@ -201,6 +208,7 @@ public class BattleshipAlexSamuel {
 				}
 				else if (symbolsresponse.equalsIgnoreCase("costumized")) {
 					symbolsselected = true;
+					// WATER SYMBOL SELECTION
 					System.out.print("\n"
 							+ "\tSelect the symbol for water (use just one character): ");
 						water = input.next();
@@ -210,6 +218,7 @@ public class BattleshipAlexSamuel {
 									+ "\tSelect the symbol for water (use just one character): ");
 								water = input.next();
 						}
+					// HIT SYMBOL SELECTION
 					System.out.print("\n"
 							+ "\tSelect the symbol for hit (use just one character): ");
 						hit = input.next();
@@ -219,6 +228,7 @@ public class BattleshipAlexSamuel {
 									+ "\tSelect the symbol for hit (use just one character): ");
 								hit = input.next();
 						}
+						// SUNK SYMBOL SELECTION
 					System.out.print("\n"
 							+ "\tSelect the symbol for sunk (use just one character): ");
 						sunk = input.next();
@@ -536,6 +546,7 @@ public class BattleshipAlexSamuel {
 				System.out.print("|" +"\n\t");
 				
 			}
+			// STADISTICS INFORMATION (SHOTS AND SHIPS SUNK)
 			if (player == 1) {
 				
 				System.out.println("\n\tShots fired: " + shootsFired);
@@ -551,18 +562,21 @@ public class BattleshipAlexSamuel {
 
 		}
 		public static void newCoordinates() {
+			// THIS SECTION IS IN CHARGE OF THE SELECTION OF THE COORDINATES WHERE TO SHOOT AT
 			
+			// LOCAL VARIABLES FOR THE MANAGEMENT 
 			int X = 0,Y;
 			String coordinates;
 			boolean validX = true;
 
-						
+			// WE ASK THE USER TO INTRODUCE THE COORDINATES HE WANTS TO SHOOT AT WITH THE FOLLOWING ORDER (LETTER,NUM) FOR (POSX,POSY)
 			System.out.print("\n\t(REMINDER) SINTAX IS: POSX,POSY \n"
 						    +"\tInsert the coordinates: \n\t");
 							
 			
 			coordinates = input.next();
 			
+			// WE CREATE THE CONDITIONS THAT RELATE THE LETTER INTRODUCED (NO MATTER ITS CASE) WITH THE POSITION IN THE ARRAY
 			if(coordinates.startsWith("A") || coordinates.startsWith("a")){
 				X = 0;
 			}
