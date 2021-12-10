@@ -8,14 +8,20 @@ import java.util.Scanner;
 
 public class BattleshipAlexSamuel {
 	
+	// VARIABLE THAT SETS THE BOARD LENGHT
 	static int mapLength;
-	// BASIC - SYMBOL CHANGER AND 2P MODE
+	// SYMBOL CHANGER
 	static String water,hit,sunk;
 	static boolean symbolsselected;
+	// TWO PLAYER MODE
 	static boolean twoPlayerMode;
 	static int player = 1;
 	
+	// LETTERS PRINTED ON TOP OF THE BOARD
 	static String[] topLetters = new String [] {"A","B","C","D","E","F","G","H","I","J"};
+	
+	// ARRAYS
+	
 	// BASIC - PLAYER 1
 	static int[][] infoShips = new int [10][10];
 	static int[][] shootedQuadrants = new int [10][10];
@@ -25,7 +31,10 @@ public class BattleshipAlexSamuel {
 	static int[][] shootedQuadrantsP2 = new int [10][10];
 	static String[][] infoMapaP2 = new String [10] [10];
 
+	// SCANNER
 	static Scanner input = new Scanner(System.in);
+	
+	// RANDOM COORDINATES FOR SHIPS
 	
 	// BASIC - PLAYER 1
 	static int shipH3X , shipH3Y; // VARIABLES FOR SHIP LENGTH 3 HORIZONTAL   1
@@ -38,6 +47,8 @@ public class BattleshipAlexSamuel {
 	static int shipH2XP2 , shipH2YP2; // VARIABLES FOR SHIP LENGTH 2 HORIZONTAL   3
 	static int shipV2XP2 , shipV2YP2; // VARIABLES FOR SHIP LENGTH 2 VERTICAL     4
 
+	// REMAINING PARTS FOR THE SHIPS
+	
 	// BASIC - PLAYER 1
 	static int remainingQuadrants1 = 3;
 	static int remainingQuadrants2 = 3;
@@ -48,6 +59,8 @@ public class BattleshipAlexSamuel {
 	static int remainingQuadrants2P2 = 3;
 	static int remainingQuadrants3P2 = 2;
 	static int remainingQuadrants4P2 = 2;
+	
+	// INFO VARIABLES
 	
 	// BASIC - PLAYER 1
 	static int sunkShips = 0;
@@ -60,8 +73,6 @@ public class BattleshipAlexSamuel {
 	
 		public static void main (String [] Args) {
 			
-			// TREMENDO JUEGAZO DE ALEX Y SAMUEL:
-			
 			start();
 
 			initialize();
@@ -72,12 +83,10 @@ public class BattleshipAlexSamuel {
 			
 			newCoordinates();
 			
-			//end();
 		}
 		public static void initialize () {
 			
-
-			//RESET OF THE VARIABLES FOR 1ST PLAYER
+			//RESET OF THE ARRAYS FOR 1ST PLAYER
 			for (int i = 0; i< shootedQuadrants.length; i++) {
 				
 				for (int j = 0; j< shootedQuadrants.length; j++) {
@@ -87,7 +96,7 @@ public class BattleshipAlexSamuel {
 					infoMapa[i][j] = " ";
 				}
 			}
-			//RESET OF THE VARIABLES FOR 2ND PLAYER
+			//RESET OF THE ARRAYS FOR 2ND PLAYER
 			if (twoPlayerMode) {
 				
 				for (int i = 0; i< shootedQuadrantsP2.length; i++) {
@@ -104,7 +113,7 @@ public class BattleshipAlexSamuel {
 		public static void start () {
 			  
 			
-	 System.out.print("    _______       _________    ___________   ___________                  __________    __________                 ___________      _________ \n"
+			System.out.print("    _______       _________    ___________   ___________                  __________    __________                 ___________      _________ \n"
 					+ "   |       |     |         |        |             |        |             |             |             |         |        |          |         |\n"
 					+ "   |       |     |         |        |             |        |             |             |             |         |        |          |         |\n"
 					+ "   |       |     |         |        |             |        |             |             |             |         |        |          |         |\n"
@@ -137,121 +146,120 @@ public class BattleshipAlexSamuel {
 					+ "                                           .....$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$.....                           \n"
 					+ "                    ,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¨`*•~-.¸       \n"
 				    );	
-	 System.out.println();
-	 	// LOCAL VARIABLES FOR THE LOOPING AND CONDITIONAL MANAGEMENT
-		String response = "";
-		int userInput = 0;
-		String symbolsresponse = "";
-	 // WE CREATE A LOOP WHICH ALLOWS THE USER TO PLAY THE NORMAL OR THE ADVANCED MODE; IN THE FIRST CASE THE MAP LENGTH IS SET TO 5 AUTOMATICALLY 
-	 //	IN THE SECOND CASE THE USER CAN SELECT THE DIMENSIONS OF THE MAP (5 UP TO 10). MOREOVER, THE USER CAN ALSO SELECT THE NUMBER OF PLAYERS (1 OR 2)
-	 // AND CHOOSE BETWEEN THE ORIGINAL SYMBOLOGY FOR WATER, HIT AND SUNK, OR A COSTUMIZED ONE, SELECTED BY HIMSELF.
+			System.out.println();
+			// LOCAL VARIABLES FOR THE LOOPING AND CONDITIONAL MANAGEMENT
+			String response = "";
+			int userInput = 0;
+			String symbolsresponse = "";
+			// WE CREATE A LOOP WHICH ALLOWS THE USER TO PLAY THE NORMAL OR THE ADVANCED MODE; IN THE FIRST CASE THE MAP LENGTH IS SET TO 5 AUTOMATICALLY 
+			// IN THE SECOND CASE THE USER CAN SELECT THE DIMENSIONS OF THE MAP (5 UP TO 10). MOREOVER, THE USER CAN ALSO SELECT THE NUMBER OF PLAYERS (1 OR 2)
+			// AND CHOOSE BETWEEN THE ORIGINAL SYMBOLOGY FOR WATER, HIT AND SUNK, OR A COSTUMIZED ONE, SELECTED BY HIMSELF.
 		
-	// LOOP TO CHECK THAT THE USER SELECTS A CORRECT OPTION (A OR B)	
-	 while (!response.equalsIgnoreCase("a") && !response.equalsIgnoreCase("b")) {
+			// LOOP TO CHECK THAT THE USER SELECTS A CORRECT OPTION (A OR B)	
+			while (!response.equalsIgnoreCase("a") && !response.equalsIgnoreCase("b")) {
 		
-		System.out.print("\n"
-				+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode \n\t");	  
-		response = input.next();
+				System.out.print("\n"
+						+ "\n \n \n \tPlease select a gamemode: \n  \ta) Basic mode\n  \tb) Advanced mode \n\t");	  
+				response = input.next();
 	
-		if(response.equalsIgnoreCase("a")) {
+				if(response.equalsIgnoreCase("a")) {
 				
-			mapLength = 5;
-		}
-		// ADVANCED MODE SELECTED; THEN WE CREATE THE LOOPS AND CONDITIONALS SO HE CAN CHOOSE DIMENSIONS, NUMBER OF PLAERS AND SYMBOLOGY
-		else if (response.equalsIgnoreCase("b"))  {
-			//DIMENSION SELECTION WITH LOOP TO CHECK THAT THE USER ENTERS A VALID DIMENSION
-			while (!(userInput >= 5 && userInput <= 10)) {
-				
-				System.out.print("\n"
-						+ "\tIntroduce the size for the map (n x n) from 5 to 10: ");	  
-				userInput = input.nextInt();
-				
-				if (userInput >= 5 && userInput <= 10) {
-					
-					mapLength = userInput;
+					mapLength = 5;
 				}
-				else {
-					
-					System.out.print("\n\tInput not valid");
-				}
-			}
-			// NUMBER OF PLAYERS SELECTION WITH LOOP TO CHECK THAT THE USER INTRODUCES A VALID NUMBER OF PLAYERS
-			while (!(userInput == 1) && !(userInput == 2)) {
+				// ADVANCED MODE SELECTED; THEN WE CREATE THE LOOPS AND CONDITIONALS SO HE CAN CHOOSE DIMENSIONS, NUMBER OF PLAERS AND SYMBOLOGY
+				else if (response.equalsIgnoreCase("b"))  {
+					//DIMENSION SELECTION WITH LOOP TO CHECK THAT THE USER ENTERS A VALID DIMENSION
+					while (!(userInput >= 5 && userInput <= 10)) {
 				
-				System.out.print("\n"
-						+ "\tIntroduce the number of players (1 or 2):  ");	  
-				userInput = input.nextInt();
+						System.out.print("\n"
+								+ "\tIntroduce the size for the map (n x n) from 5 to 10: ");	  
+						userInput = input.nextInt();
 				
-				if (userInput == 1) {
+						if (userInput >= 5 && userInput <= 10) {
 					
-					twoPlayerMode = false;
-				}
-				else if (userInput == 2) {
+							mapLength = userInput;
+						}
+						else {
 					
-					twoPlayerMode = true;
+							System.out.print("\n\tInput not valid");
+						}
+					}
+					// NUMBER OF PLAYERS SELECTION WITH LOOP TO CHECK THAT THE USER INTRODUCES A VALID NUMBER OF PLAYERS
+					while (!(userInput == 1) && !(userInput == 2)) {
+				
+						System.out.print("\n"
+								+ "\tIntroduce the number of players (1 or 2):  ");	  
+						userInput = input.nextInt();
+				
+						if (userInput == 1) {
 					
-				}
-				else {
+							twoPlayerMode = false;
+						}
+						else if (userInput == 2) {
 					
-					System.out.println("\n\tInput not valid");
+							twoPlayerMode = true;
+					
+						}
+						else {
+					
+							System.out.println("\n\tInput not valid");
 		
-				}
-			}
-			// SYMBOLOGY SELECTION WITH LOOP TO CHECK THAT THE USER INTRODUCES A VALID SYMBOLOGY
-			while (!symbolsresponse.equalsIgnoreCase("original") && !symbolsresponse.equalsIgnoreCase("costumized")) {
-				System.out.print("\n"
-						+ "\tSelect the wanted symbols for water, hit, sunk (original or costumized): ");
-				symbolsresponse = input.next();
+						}
+					}
+					// SYMBOLOGY SELECTION WITH LOOP TO CHECK THAT THE USER INTRODUCES A VALID SYMBOLOGY
+					while (!symbolsresponse.equalsIgnoreCase("original") && !symbolsresponse.equalsIgnoreCase("costumized")) {
+						System.out.print("\n"
+									+ "\tSelect the wanted symbols for water, hit, sunk (original or costumized): ");
+						symbolsresponse = input.next();
 				
-				if (symbolsresponse.equalsIgnoreCase("original")) {
-					symbolsselected = false;
-				}
-				else if (symbolsresponse.equalsIgnoreCase("costumized")) {
-					symbolsselected = true;
-					// WATER SYMBOL SELECTION
-					System.out.print("\n"
-							+ "\tSelect the symbol for water (use just one character): ");
-						water = input.next();
-						while(water.length() > 1) {
-							System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+						if (symbolsresponse.equalsIgnoreCase("original")) {
+							symbolsselected = false;
+						}
+						else if (symbolsresponse.equalsIgnoreCase("costumized")) {
+							symbolsselected = true;
+							// WATER SYMBOL SELECTION
 							System.out.print("\n"
 									+ "\tSelect the symbol for water (use just one character): ");
-								water = input.next();
-						}
-					// HIT SYMBOL SELECTION
-					System.out.print("\n"
-							+ "\tSelect the symbol for hit (use just one character): ");
-						hit = input.next();
-						while(hit.length() > 1) {
-							System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+							water = input.next();
+							while(water.length() > 1) {
+								System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+								System.out.print("\n"
+									+ "\tSelect the symbol for water (use just one character): ");
+							water = input.next();
+							}
+							// HIT SYMBOL SELECTION
 							System.out.print("\n"
-									+ "\tSelect the symbol for hit (use just one character): ");
+										+ "\tSelect the symbol for hit (use just one character): ");
+							hit = input.next();
+							while(hit.length() > 1) {
+								System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+								System.out.print("\n"
+											+ "\tSelect the symbol for hit (use just one character): ");
 								hit = input.next();
-						}
-						// SUNK SYMBOL SELECTION
-					System.out.print("\n"
-							+ "\tSelect the symbol for sunk (use just one character): ");
-						sunk = input.next();
-						while(sunk.length() > 1) {
-							System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+							}
+							// SUNK SYMBOL SELECTION
 							System.out.print("\n"
-									+ "\tSelect the symbol for sunk (use just one character): ");
+										+ "\tSelect the symbol for sunk (use just one character): ");
+							sunk = input.next();
+							while(sunk.length() > 1) {
+								System.out.print("\n\tThe symbol entered has a bigger size than allowed");
+								System.out.print("\n"
+										+ "\tSelect the symbol for sunk (use just one character): ");
 								sunk = input.next();
+							}
 						}
+						// NOT VALID
+						else {
 					
+						System.out.println("\n\tInput not valid");
+						}
+					}
 				}
 				else {
-					
-					System.out.println("\n\tInput not valid");
-					
-				}
-			}
-		}
-		else {
 			
-			System.out.print("\n\tInput not valid");
-		}	
-	}
+				System.out.print("\n\tInput not valid");
+				}	
+			}
 		}
 
 		public static void shipGeneration () {
@@ -358,15 +366,11 @@ public class BattleshipAlexSamuel {
 			}
 			// THE VARIABLE TO STOP THE LOOP IS CHANGED
 			valid = false;
-			
-			
-			
-			
+								
 			
 //...................................................................................................................................................
 			
 			// SECOND PLAYER
-			
 			
 			
 			if (twoPlayerMode) {
@@ -471,7 +475,7 @@ public class BattleshipAlexSamuel {
 				System.out.println("\n\t"+"Player "+ player + "\n");
 			}
 
-						// 			Board example
+						// 			BOARD EXAMPLE
 						// 	_______________________________
 						//	|     |     |     |     |     |
 						//	|  #  |  A  |     |  X  |     |
@@ -557,9 +561,6 @@ public class BattleshipAlexSamuel {
 				System.out.println("\n\tShots fired: " + shootsFiredP2);
 				System.out.println("\tShips sunk: " + sunkShipsP2);
 			}
-
-			
-
 		}
 		public static void newCoordinates() {
 			// THIS SECTION IS IN CHARGE OF THE SELECTION OF THE COORDINATES WHERE TO SHOOT AT
@@ -611,8 +612,10 @@ public class BattleshipAlexSamuel {
 				validX = false;
 			}
 			
+			// THE Y IS THE NUMERIC VALUE AT POS 2 OF THE COORDINATES
 			Y = Character.getNumericValue(coordinates.charAt(2));
 			
+			// WE CREATE A LOOP FOR INVALID INPUTS
 			while(!validX || coordinates.charAt(1) != ',' || Y < 0 || Y > mapLength-1 ||X > mapLength-1 ||coordinates.length() > 3) {
 
 					System.out.print("\n\tThe coordinates could not be found, please try again");
@@ -658,28 +661,32 @@ public class BattleshipAlexSamuel {
 				}
 				Y = Character.getNumericValue(coordinates.charAt(2));
 			}
-			
+			// WHEN THE COORDINATES ARE CORRECT AND ARE SEPARED IN DIFERENT VARIABLES WE CALL THE FUNCTION shootAt() WITH THE CORRDINATES AS PARAMETERS
 			shootAt(X,Y);
 		}
 		public static void shootAt (int x, int y) {
 			
-			// ESTA PARTE SE ENCARGA DE PEDIR LAS COORDENADAS Y ACTUALIZAR EL ARRAY CON LOS
-			// CALCULOS CORRESPONDIENTES Y CONTADORES (DISPAROS, BARCOS HUNDIDOS...)
-			// SYNTAXIS PARA INTRODUCIR COORDENADAS: (posx, poxy) 
-			// SI LAS COORDENADAS NO SON VÃLIDAS VOLVER A PREGUNTAR
-			// SI SON VALIDAS ACTUALIZAR ARRAY Y LLAMAR A UpdateMap()
+			// ESTA PARTE SE ENCARGA DE PEDIR LAS COORDENADAS Y ACTUALIZAR EL ARRAY CON LOS		|
+			// CALCULOS CORRESPONDIENTES Y CONTADORES (DISPAROS, BARCOS HUNDIDOS...)			|
+			// SYNTAXIS PARA INTRODUCIR COORDENADAS: (posx, poxy) 								|--> NO OLVIDAR BORRAR!!!!!!!!!!!!!
+			// SI LAS COORDENADAS NO SON VÃLIDAS VOLVER A PREGUNTAR								|
+			// SI SON VALIDAS ACTUALIZAR ARRAY Y LLAMAR A UpdateMap()							|
 			
-
+			// THIS FUNCTION UPDATES THE ARRAYS AND THE VARIABLES AS shoots and sunkShips WITH RESPECT TO THE COORDINATES INTRODUCED AS PARAMETERS
+			// IF IT IS PLAYER 1 OR PLAYER 2 TURN ONLY THE CORRESPONDING ARRAYS AND VARIABLES WILL BE UPDATED
 			
 			if (player == 1) {
 				
 				if (shootedQuadrants[x][y] == 0) {
 					
+					// THE CUADRANT IS SET AS SHOOTED AND THE VARIABLE shootsFired is increased by 1
 					shootedQuadrants[x][y] = 1;
 					shootsFired += 1;
 					
+					// DEPENDING ON WHAT IS ON THE SHOOTED QUADRANT:
 					switch (infoShips[y][x]) {
 				
+						// WATER
 						case 0: 
 							
 							if(symbolsselected == false) {
@@ -692,11 +699,14 @@ public class BattleshipAlexSamuel {
 							System.out.println("\tWhat a shame, it's water :(\n");
 							break;
 							}
-							
+						
+						// SHIP 1
 						case 1:
 					
+							// ONE LESS QUADRANT OF THE SHIP TO BE SUNK
 							remainingQuadrants1 -= 1;
 					
+							// HIT
 							if (remainingQuadrants1 >0) {
 								
 								if(symbolsselected == false) {
@@ -708,6 +718,7 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tWow, you hit a ship :)\n");
 								}
 							}
+							// SUNK
 							else {
 								
 								if(symbolsselected == false) {
@@ -727,11 +738,14 @@ public class BattleshipAlexSamuel {
 						
 							}
 							break;
-							
+						
+						// SHIP 2
 						case 2:
 						
+							// ONE LESS QUADRANT OF THE SHIP TO BE SUNK
 							remainingQuadrants2 -= 1;
 					
+							// HIT
 							if (remainingQuadrants2 >0) {
 								
 								if(symbolsselected == false) {
@@ -743,6 +757,7 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tWow, you hit a ship :)\n");
 								}
 							}
+							// SUNK
 							else {
 						
 								if(symbolsselected == false) {
@@ -761,11 +776,14 @@ public class BattleshipAlexSamuel {
 								}
 							}
 							break;
-							
+						
+						// SHIP 3
 						case 3:
 						
+							// ONE LESS QUADRANT OF THE SHIP TO BE SUNK
 							remainingQuadrants3 -= 1;
 					
+							// HIT
 							if (remainingQuadrants3 >0) {
 						
 								if(symbolsselected == false) {
@@ -777,6 +795,7 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tWow, you hit a ship :)\n");
 								}
 							}
+							// SUNK
 							else {
 						
 								if(symbolsselected == false) {
@@ -794,11 +813,14 @@ public class BattleshipAlexSamuel {
 						
 							}
 							break;
-							
+						
+						// SHIP 4
 						case 4:
 						
+							// ONE LESS QUADRANT OF THE SHIP TO BE SUNK
 							remainingQuadrants4 -= 1;
 					
+							// HIT
 							if (remainingQuadrants4 >0) {
 						
 								if(symbolsselected == false) {
@@ -810,6 +832,7 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tWow, you hit a ship :)\n");
 								}
 							}
+							// SUNK
 							else {
 								
 								if(symbolsselected == false) {
@@ -850,11 +873,14 @@ public class BattleshipAlexSamuel {
 				
 				if (shootedQuadrantsP2[x][y] == 0) {
 					
+					// THE CUADRANT IS SET AS SHOOTED AND THE VARIABLE shootsFired is increased by 1
 					shootedQuadrantsP2[x][y] = 1;
 					shootsFiredP2 += 1;
 					
+					// DEPENDING ON WHAT IS ON THE SHOOTED QUADRANT:
 					switch (infoShipsP2[y][x]) {
 				
+						// WATER
 						case 0: 
 					 
 							if(symbolsselected == false) {
@@ -868,10 +894,13 @@ public class BattleshipAlexSamuel {
 							break;
 							}
 							
+						// SHIP 1
 						case 1:
 					
+							// ONE LESS QUADRANT OF THE SHIP TO BE SUNK
 							remainingQuadrants1P2 -= 1;
 					
+							// HIT
 							if (remainingQuadrants1P2 >0) {
 						
 								if(symbolsselected == false) {
@@ -883,6 +912,7 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tWow, you hit a ship :)\n");
 								}
 							}
+							// SUNK
 							else {
 						
 								if(symbolsselected == false) {
@@ -902,10 +932,13 @@ public class BattleshipAlexSamuel {
 							}
 							break;
 							
+						// SHIP 2
 						case 2:
 						
+							// ONE LESS QUADRANT OF THE SHIP TO BE SUNK
 							remainingQuadrants2P2 -= 1;
 					
+							// HIT
 							if (remainingQuadrants2P2 >0) {
 						
 								if(symbolsselected == false) {
@@ -917,6 +950,7 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tWow, you hit a ship :)\n");
 								}
 							}
+							// SUNK
 							else {
 						
 								if(symbolsselected == false) {
@@ -936,10 +970,13 @@ public class BattleshipAlexSamuel {
 							}
 							break;
 							
+						// SHIP 3
 						case 3:
 						
+							// ONE LESS QUADRANT OF THE SHIP TO BE SUNK
 							remainingQuadrants3P2 -= 1;
 					
+							// HIT
 							if (remainingQuadrants3P2 >0) {
 						
 								if(symbolsselected == false) {
@@ -951,6 +988,7 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tWow, you hit a ship :)\n");
 								}
 							}
+							// SUNK
 							else {
 						
 								if(symbolsselected == false) {
@@ -969,10 +1007,13 @@ public class BattleshipAlexSamuel {
 							}
 							break;
 							
+						// SHIP 4
 						case 4:
-						
+							
+							// ONE LESS QUADRANT OF THE SHIP TO BE SUNK
 							remainingQuadrants4P2 -= 1;
 					
+							// HIT
 							if (remainingQuadrants4P2 >0) {
 						
 								if(symbolsselected == false) {
@@ -984,6 +1025,7 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tWow, you hit a ship :)\n");
 								}
 							}
+							// SUNK
 							else {
 						
 								if(symbolsselected == false) {
@@ -998,23 +1040,23 @@ public class BattleshipAlexSamuel {
 								System.out.println("\tAmazing!!! You sunk a ship!\n");
 								sunkShipsP2 += 1;
 								}
-						
 							}
 							break;
 						
 						default: System.out.println("\tERROR");
 					}
 				}
-				
+				// MESSAGE IF YOU HAVE ALREADY SHOOTED AT THE QUADRANT
 				else {
 					
 					System.out.println("\tYou have already shooted at this cuadrant.");
 					newCoordinates();
-					
 				}	
 			}
 		
+			// WE CALL updateMap() TO DISPLAY THE MAP WITH THE NEW CHANGES
 			updateMap();
+			// IF WE ARE IN 2-PLAYER MODE, WE CHANGE THE TURN OF THE PLAYERS
 			if (twoPlayerMode) {
 				
 				if (player == 1) {
@@ -1024,28 +1066,29 @@ public class BattleshipAlexSamuel {
 				else {
 					player = 1;
 				}
+				// IF WE ARE IN 2-PLAYER MODE WE CALL updateMap() TO DISPLAY THE MAP OF THE OTHER PLAYER
 				updateMap();
 			}
-
+			// IF ANY OF THE 2 PLAYERS HAVE SUNK ALL THE BOATS THE GAME CONTINUES BY ASKING FOR NEW COORDINATES TO SHOOT AT
 			if (sunkShips <= 3 && sunkShipsP2 <= 3) {
 				
 				newCoordinates();
 			}
+			// IF ANY OF THE 2 PLAYERS HAS SUNK ALL THE BOAT THE GAME ENDS
 			else {
 				
 				end();
 			}
-			
 		}
 		public static void end () {
 			
-			// CUANDO EL JUEGO TERMINA ESTA PARTE SE ENCARGA DE MOSTRAR LA INFO DE
-			// LA PARTIDA, LAS PARTIDAS JUGADAS Y PREGUNTAR SI SE QUIERE VOLVER A JUGAR
-			// SI SE QUIERE VOLVER A JUGAR LLAMAR A restart()
-			//boolean valid = false;
+			// WHEN THE GAME IS END:
+			
 			String answer;
 			
+			// WE PRINT THAT THE GAME IS OVER
 			System.out.println("\n\tThe game is over!");
+			// IF WE ARE IN 2-PLAYER MODE WE DISPLAY WHO IS THE WINNER
 			if (twoPlayerMode){
 				
 				if (sunkShips == 4) {
@@ -1057,23 +1100,27 @@ public class BattleshipAlexSamuel {
 					System.out.println("\n\tThe winner is PLAYER 2");
 				}
 			}
+			// WE DISPLAY THE NUMBER OF PLAYED GAMES
 			System.out.println("\n\t"+ playedGames + " Game played");
+			// WE ASK IF THE PLAYER WANTS TO PLAY AGAIN AND CHECK IF THE INPUT IS CORRECT
 			do {
 				System.out.print("\n\tDo you want to play again? (Y/N) \n\t");
 				answer = input.next();
 
 			} while (!(answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("N")));
 			
+			// IF THE PLAYER WANTS TO PLAY AGAIN, WE CALL THE FUNCTION restart()
 			if (answer.equalsIgnoreCase("Y")) {
 				restart();
 			}
+			// IF THE PLAYER DOES NOT WANT TO PLAY AGAIN, WE FINISH THE EXECUTION OF THE GAME
 			else {
 				System.exit(-1);
 			}
 		}
 		public static void restart () {
 			
-			// SI SE QUIERE VOLVER A JUGAR HAY QUE REINICIAR TODAS LAS VARIABLES Y VOLVER A LANZAR EL JUEGO
+			// IF THE PLAYER WANTS TO PLAY AGAIN ALL THE VARIABLES ARE RESETED
 			
 			player = 1;
 			playedGames += 1;
@@ -1090,9 +1137,13 @@ public class BattleshipAlexSamuel {
 			remainingQuadrants3P2 = 2;
 			remainingQuadrants4P2 = 2;
 			
+			// WE CALL THE FUNCTION initialize() TO RESET THE ARRAYS
 			initialize();
+			// WE GENERATE NEW SHIPS
 			shipGeneration();
+			// WE DISPLAY DE BOARD
 			updateMap();
+			// WE ASK FOR NEW COORDINATES
 			newCoordinates();
 		}
 }
