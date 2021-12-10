@@ -1,0 +1,20 @@
+Alex Vela Merrien (100472725)
+
+Samuel Pérez Sandonato (100472773)
+ 
+Options implemented:
+
+- Full basic mode
+- Full advanced mode: - customizable board size
+		      - customizable symbols for the board
+		      - 2-player mode
+
+Our favorite parts to implement were the function to show the board
+on the screen and the function to generate randomly the ships, but these
+parts were not especially difficult to code because we found quickly the
+ideas to implement these options. However, we encountered a problem with the
+customizable board size. The problem was that the arrays for the board had to
+be created before the user could introduce any input, so we could not create them
+with the board size. The way we solved this problem was by setting the array's size
+to its maximum possible value (10) and then just using the corresponding part given
+by a variable for the board size;
